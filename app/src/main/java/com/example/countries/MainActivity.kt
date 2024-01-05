@@ -8,11 +8,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.countries.ui.theme.CountriesTheme
+import com.example.domain.model.CountryModel
+import com.example.presentation.viewmodel.CountriesViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
+    private val viewModel: CountriesViewModel by viewModel()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -22,7 +28,9 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    // TODO Use a sealed class to describe the states
+                    val countries: List<CountryModel> by viewModel.countries.observeAsState(listOf(CountryModel("Loading","Loading", "Loading", listOf("Loading"), "Loading", "Loading")))
+                    Greeting(countries.first().commonName)
                 }
             }
         }
@@ -31,10 +39,19 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    if (name.isNullOrBlank()) {
+        Text(
+            text = "Hello Loading!",
+            modifier = modifier
+        )
+    }
+    else {
+        Text(
+            text = "Hello $name!",
+            modifier = modifier
+        )
+    }
+
 }
 
 @Preview(showBackground = true)
