@@ -12,6 +12,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.common.models.DataState
 import com.example.countries.ui.theme.CountriesTheme
 import com.example.domain.model.CountryModel
 import com.example.presentation.viewmodel.CountriesViewModel
@@ -28,9 +29,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    // TODO Use a sealed class to describe the states
-                    val countries: List<CountryModel> by viewModel.countries.observeAsState(listOf(CountryModel("Loading","Loading", "Loading", listOf("Loading"), "Loading", "Loading")))
-                    Greeting(countries.first().commonName)
+                    val countries: DataState<List<CountryModel>> by viewModel.countries.observeAsState(DataState.Loading)
+                    when (val state = countries) {
+                        is DataState.Success ->  Greeting(state.data.first().commonName)
+                        is DataState.Loading -> Greeting("Loading")
+                        is DataState.Error -> Greeting("There has been an error :(((")
+                    }
                 }
             }
         }
