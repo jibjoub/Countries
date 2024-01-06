@@ -6,5 +6,6 @@ data class CountryModel(
     val officialName: String,
     val continents: List<String>,
     val flagUrl: String,
-    val flagDescription: String
+    val flagDescription: String,
+    val population: Int?
 )

@@ -30,12 +30,13 @@ class CountryRepositoryImpl(private val retrofitInstance: RetrofitInstance): Cou
 
     fun mapToModel(country: CountryEntity): CountryModel {
         val res = CountryModel(
-            country.id,
-            country.name.common,
-            country.name.official,
-            country.continents,
-            country.flags.url,
-            country.flags.description?: "Not defined"
+            country.id?: "Absent",
+            country.name?.common?: "Not defined",
+            country.name?.official?: "Not defined",
+            country.continents?: listOf(),
+            country.flags?.url?: "Not defined",
+            country.flags?.description?: "Not defined",
+            country.population
         )
         return res
     }
