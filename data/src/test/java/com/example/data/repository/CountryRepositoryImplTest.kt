@@ -4,7 +4,6 @@ import com.example.data.entity.CountryEntity
 import com.example.data.remote.api.RetrofitInstance
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertNull
 import org.junit.Test
 
 class CountryRepositoryImplTest {
@@ -15,7 +14,7 @@ class CountryRepositoryImplTest {
     fun `When all the fields in a CountryEntity are null, all the String fields should have the value of Not defined, the list of Continent should be empty and the population should be null in the CountryModel`() {
         val emptyCountryEntity = CountryEntity(null, null, null, null, null)
 
-        val emptyCountryModel = countryRepositoryImpl.mapToModel(emptyCountryEntity)
+        val emptyCountryModel = countryRepositoryImpl.mapToCountryModel(emptyCountryEntity)
 
         assertEquals(emptyCountryModel.id, "Not defined")
         assertEquals(emptyCountryModel.commonName, "Not defined")

@@ -17,7 +17,7 @@ class CountryRepositoryImpl(private val retrofitInstance: RetrofitInstance): Cou
                 val body = response.body()
                 if (response.isSuccessful && body != null) {
                     // Always give a random order to the countries fetched
-                    val countries = body.shuffled().map { mapToModel(it) }
+                    val countries = body.shuffled().map { mapToCountryModel(it) }
                     emit(DataState.Success(countries))
                 }
                 else {
@@ -28,7 +28,7 @@ class CountryRepositoryImpl(private val retrofitInstance: RetrofitInstance): Cou
             }
         }
 
-    fun mapToModel(country: CountryEntity): CountryModel {
+    fun mapToCountryModel(country: CountryEntity): CountryModel {
         return CountryModel(
             country.id?: "Not defined",
             country.name?.common?: "Not defined",
