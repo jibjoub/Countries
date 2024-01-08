@@ -17,13 +17,14 @@ class CountriesViewModel(private val fetchCountriesUseCase: FetchCountriesUseCas
     val countriesUiState: LiveData<DataState<List<CountryUi>>> get() = _countriesUiState
 
     private val viewModelScope = CoroutineScope(Dispatchers.Main)
+
     fun loadCountriesData() {
         viewModelScope.launch {
             fetchCountriesUseCase.invoke().map { dataState ->
                 dataState.mapData { countryModels ->
                     countryModels.map { CountryUi.mapToCountryUi(it) }
                 }
-            }.collect {transformedState ->
+            }.collect { transformedState ->
                 _countriesUiState.value = transformedState
             }
         }

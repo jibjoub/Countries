@@ -2,9 +2,9 @@ package com.example.countries
 
 import android.app.Application
 import com.example.data.remote.api.RetrofitInstance
-import com.example.data.repository.CountryRepositoryImpl
+import com.example.data.repository.WorldRepositoryImpl
 import com.example.domain.FetchCountriesUseCase
-import com.example.domain.repository.CountryRepository
+import com.example.domain.repository.WorldRepository
 import com.example.presentation.viewmodel.CountriesViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -23,8 +23,8 @@ class CountriesApp : Application() {
                     FetchCountriesUseCase(get())
                 }
 
-                single<CountryRepository> {
-                    CountryRepositoryImpl(get())
+                single<WorldRepository> {
+                    WorldRepositoryImpl(get())
                 }
 
                 single { RetrofitInstance }
