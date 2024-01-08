@@ -12,16 +12,15 @@ data class CountryUi (
     val population: String
 ) {
     companion object {
-        fun mapToUiModel(countryModel: CountryModel): CountryUi {
-            return CountryUi(
-                countryModel.id,
-                countryModel.commonName,
-                countryModel.officialName,
-                countryModel.continents.toString(),
-                countryModel.flagUrl,
-                countryModel.flagDescription,
-                countryModel.population.toString()
+        fun mapToUiModel(countryModel: CountryModel) =
+            CountryUi(
+                id = countryModel.id,
+                commonName = countryModel.commonName,
+                officialName = countryModel.officialName,
+                continents = countryModel.continents?.joinToString(", ") ?: "Not defined",
+                flagUrl = countryModel.flagUrl,
+                flagDescription = countryModel.flagDescription,
+                population = countryModel.population?.let {"${it.div(1000000)}M"}?: "Not defined"
             )
-        }
     }
 }
