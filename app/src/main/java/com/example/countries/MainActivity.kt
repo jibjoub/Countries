@@ -4,17 +4,18 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.common.models.DataState
 import com.example.countries.ui.theme.CountriesTheme
 import com.example.presentation.model.CountryUi
+import com.example.presentation.view.CountryList
 import com.example.presentation.viewmodel.CountriesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -29,11 +30,11 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background,
+                    color = Color(android.graphics.Color.parseColor("#f2ede4"))
                 ) {
                     val countries: DataState<List<CountryUi>> by viewModel.countriesUiState.observeAsState(DataState.Loading)
                     when (val state = countries) {
-                        is DataState.Success -> Greeting(state.data.first().commonName)
+                        is DataState.Success -> CountryList(countries = state.data)
                         is DataState.Loading -> Greeting("Loading")
                         is DataState.Error -> Greeting("There has been an error :(((")
                     }
