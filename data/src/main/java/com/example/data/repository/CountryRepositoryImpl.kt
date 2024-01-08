@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
 
-class CountryRepositoryImpl(private val retrofitInstance: RetrofitInstance): CountryRepository {
+class CountryRepositoryImpl(private val retrofitInstance: RetrofitInstance) : CountryRepository {
     override fun fetchCountries(): Flow<DataState<List<CountryModel>>> =
         flow {
             try {
@@ -19,8 +19,7 @@ class CountryRepositoryImpl(private val retrofitInstance: RetrofitInstance): Cou
                     // Always give a random order to the countries fetched
                     val countries = body.shuffled().map { mapToCountryModel(it) }
                     emit(DataState.Success(countries))
-                }
-                else {
+                } else {
                     emit(DataState.Error(Exception("Response is not successful or body is null")))
                 }
             } catch (e: HttpException) {
@@ -30,13 +29,13 @@ class CountryRepositoryImpl(private val retrofitInstance: RetrofitInstance): Cou
 
     fun mapToCountryModel(country: CountryEntity): CountryModel {
         return CountryModel(
-            id = country.id?: "Not defined",
-            commonName = country.name?.common?: "Not defined",
-            officialName = country.name?.official?: "Not defined",
+            id = country.id ?: "Not defined",
+            commonName = country.name?.common ?: "Not defined",
+            officialName = country.name?.official ?: "Not defined",
             continents = country.continents,
-            flagUrl = country.flags?.url?: "Not defined",
-            flagDescription = country.flags?.description?: "Not defined",
-            population = country.population
+            flagUrl = country.flags?.url ?: "Not defined",
+            flagDescription = country.flags?.description ?: "Not defined",
+            population = country.population,
         )
     }
 }

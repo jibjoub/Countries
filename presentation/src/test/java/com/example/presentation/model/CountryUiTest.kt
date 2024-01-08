@@ -7,7 +7,7 @@ import org.junit.Test
 class CountryUiTest {
     @Test
     fun `Given a CountryModel with a list of 2 continents, when mapping it to CountryUi, then the different continents should be separated by a comma and a space`() {
-        val multipleContinentsCountryModel = countryModelBuilder(continents = listOf("Europe","Asia"))
+        val multipleContinentsCountryModel = countryModelBuilder(continents = listOf("Europe", "Asia"))
         val countryUi = CountryUi.mapToUiModel(multipleContinentsCountryModel)
 
         assertEquals("Europe, Asia", countryUi.continents)
@@ -44,14 +44,14 @@ class CountryUiTest {
         continents: List<String>? = listOf("test"),
         flagUrl: String = "test",
         flagDescription: String = "test",
-        population: Int? = 1
-        ) = CountryModel(
-                        id,
-                        commonName,
-                        officialName,
-                        continents,
-                        flagUrl,
-                        flagDescription,
-                        population
-                    )
+        population: Int? = 1,
+    ) = CountryModel(
+        id,
+        commonName,
+        officialName,
+        continents,
+        flagUrl,
+        flagDescription,
+        population,
+    )
 }

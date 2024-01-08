@@ -11,14 +11,13 @@ class CountryRepositoryImplTest {
     private val countryRepositoryImpl: CountryRepositoryImpl = CountryRepositoryImpl(retrofitInstance)
 
     @Test
-    fun `When all the fields in a CountryEntity are null, all the String fields should have the value of Not defined, the list of Continent should be empty and the population should be null in the CountryModel`() {
+    fun `Given a CountryEntity with all null fields, when mapping to CountryModel, the fields are not defined for Strings and null for the other types`() {
         val emptyCountryEntity = CountryEntity(null, null, null, null, null)
-
         val emptyCountryModel = countryRepositoryImpl.mapToCountryModel(emptyCountryEntity)
 
         assertEquals(emptyCountryModel.id, "Not defined")
         assertEquals(emptyCountryModel.commonName, "Not defined")
-        assert(emptyCountryModel.continents.isEmpty())
+        assertEquals(emptyCountryModel.continents, null)
         assertEquals(emptyCountryModel.flagUrl, "Not defined")
         assertEquals(emptyCountryModel.flagDescription, "Not defined")
         assertEquals(emptyCountryModel.population, null)

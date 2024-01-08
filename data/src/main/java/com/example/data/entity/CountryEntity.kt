@@ -7,5 +7,5 @@ data class CountryEntity(
     val name: NameEntity?,
     val continents: List<String>?,
     val flags: FlagEntity?,
-    val population: Int?
+    val population: Int?,
 )

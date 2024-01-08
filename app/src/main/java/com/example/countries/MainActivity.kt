@@ -20,6 +20,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
     private val viewModel: CountriesViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -27,11 +28,11 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+                    color = MaterialTheme.colorScheme.background,
                 ) {
                     val countries: DataState<List<CountryModel>> by viewModel.countries.observeAsState(DataState.Loading)
                     when (val state = countries) {
-                        is DataState.Success ->  Greeting(state.data.first().commonName)
+                        is DataState.Success -> Greeting(state.data.first().commonName)
                         is DataState.Loading -> Greeting("Loading")
                         is DataState.Error -> Greeting("There has been an error :(((")
                     }
@@ -42,20 +43,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun Greeting(
+    name: String,
+    modifier: Modifier = Modifier,
+) {
     if (name.isNullOrBlank()) {
         Text(
             text = "Hello Loading!",
-            modifier = modifier
+            modifier = modifier,
         )
-    }
-    else {
+    } else {
         Text(
             text = "Hello $name!",
-            modifier = modifier
+            modifier = modifier,
         )
     }
-
 }
 
 @Preview(showBackground = true)

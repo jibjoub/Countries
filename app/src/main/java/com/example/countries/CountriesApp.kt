@@ -11,24 +11,24 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.dsl.module
 
-class CountriesApp: Application() {
+class CountriesApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        val appModule = module {
+        val appModule =
+            module {
+                viewModel { CountriesViewModel(get()) }
 
-            viewModel { CountriesViewModel(get()) }
+                single {
+                    FetchCountriesUseCase(get())
+                }
 
-            single {
-                FetchCountriesUseCase(get())
+                single<CountryRepository> {
+                    CountryRepositoryImpl(get())
+                }
+
+                single { RetrofitInstance }
             }
-
-            single<CountryRepository> {
-                CountryRepositoryImpl(get())
-            }
-
-            single { RetrofitInstance }
-        }
 
         startKoin {
             androidContext(this@CountriesApp)
