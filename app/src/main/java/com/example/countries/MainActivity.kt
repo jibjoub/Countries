@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.common.models.DataState
 import com.example.countries.ui.theme.CountriesTheme
-import com.example.domain.model.CountryModel
+import com.example.presentation.model.CountryUi
 import com.example.presentation.viewmodel.CountriesViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,6 +23,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.loadCountriesData()
         setContent {
             CountriesTheme {
                 // A surface container using the 'background' color from the theme
@@ -30,7 +31,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
                 ) {
-                    val countries: DataState<List<CountryModel>> by viewModel.countries.observeAsState(DataState.Loading)
+                    val countries: DataState<List<CountryUi>> by viewModel.countriesUiState.observeAsState(DataState.Loading)
                     when (val state = countries) {
                         is DataState.Success -> Greeting(state.data.first().commonName)
                         is DataState.Loading -> Greeting("Loading")

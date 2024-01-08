@@ -12,7 +12,7 @@ data class CountryUi(
     val population: String,
 ) {
     companion object {
-        fun mapToUiModel(countryModel: CountryModel) =
+        fun mapToCountryUi(countryModel: CountryModel) =
             CountryUi(
                 id = countryModel.id,
                 commonName = countryModel.commonName,

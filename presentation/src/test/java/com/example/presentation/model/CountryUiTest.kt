@@ -8,7 +8,7 @@ class CountryUiTest {
     @Test
     fun `Given a CountryModel with a list of 2 continents, when mapping it to CountryUi, then the different continents should be separated by a comma and a space`() {
         val multipleContinentsCountryModel = countryModelBuilder(continents = listOf("Europe", "Asia"))
-        val countryUi = CountryUi.mapToUiModel(multipleContinentsCountryModel)
+        val countryUi = CountryUi.mapToCountryUi(multipleContinentsCountryModel)
 
         assertEquals("Europe, Asia", countryUi.continents)
     }
@@ -16,7 +16,7 @@ class CountryUiTest {
     @Test
     fun `Given a CountryModel with null value of continents, when mapping it to CountryUi, then the continent value should be Not defined`() {
         val populationCountryModel = countryModelBuilder(continents = null)
-        val countryUi = CountryUi.mapToUiModel(populationCountryModel)
+        val countryUi = CountryUi.mapToCountryUi(populationCountryModel)
 
         assertEquals("Not defined", countryUi.continents)
     }
@@ -24,7 +24,7 @@ class CountryUiTest {
     @Test
     fun `Given a CountryModel with a valid value of population, when mapping it to CountryUi, then the population should be written in millions`() {
         val populationCountryModel = countryModelBuilder(population = 25_000_000)
-        val countryUi = CountryUi.mapToUiModel(populationCountryModel)
+        val countryUi = CountryUi.mapToCountryUi(populationCountryModel)
 
         assertEquals(countryUi.population, "25M")
     }
@@ -32,7 +32,7 @@ class CountryUiTest {
     @Test
     fun `Given a CountryModel with null value of population, when mapping it to CountryUi, then the continent value should be Not defined`() {
         val populationCountryModel = countryModelBuilder(population = null)
-        val countryUi = CountryUi.mapToUiModel(populationCountryModel)
+        val countryUi = CountryUi.mapToCountryUi(populationCountryModel)
 
         assertEquals("Not defined", countryUi.population)
     }

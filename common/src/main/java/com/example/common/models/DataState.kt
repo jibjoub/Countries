@@ -8,4 +8,12 @@ sealed class DataState<out R> {
     }
 
     object Loading : DataState<Nothing>()
+
+    fun <T, R> DataState<T>.mapData(mapper: (T) -> R): DataState<R> {
+        return when (this) {
+            is Success -> Success(mapper(data))
+            is Error -> this
+            is Loading -> this
+        }
+    }
 }
