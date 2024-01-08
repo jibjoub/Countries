@@ -19,7 +19,7 @@ import coil.compose.AsyncImage
 import com.example.presentation.model.CountryUi
 
 @Composable
-fun CountryList (countries: List<CountryUi>){
+fun CountryList(countries: List<CountryUi>) {
     LazyColumn {
         items(countries) { country ->
             CountryItem(country = country)
@@ -30,14 +30,15 @@ fun CountryList (countries: List<CountryUi>){
 @Composable
 fun CountryItem(country: CountryUi) {
     Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
+        modifier =
+            Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
     ) {
         AsyncImage(
             model = country.flagUrl,
             contentDescription = "Flag",
-            modifier = Modifier.size(48.dp)
+            modifier = Modifier.size(48.dp),
         )
 
         Spacer(modifier = Modifier.width(16.dp))
