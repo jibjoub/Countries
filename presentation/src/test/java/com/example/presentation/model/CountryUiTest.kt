@@ -38,17 +38,19 @@ class CountryUiTest {
     }
 
     private fun countryModelBuilder(
-        id: String = "test",
-        commonName: String = "test",
-        officialName: String = "test",
-        continents: List<String>? = listOf("test"),
-        flagUrl: String = "test",
-        flagDescription: String = "test",
-        population: Int? = 1,
+        id: String? = null,
+        commonName: String? = null,
+        officialName: String? = null,
+        capitals: List<String>? = null,
+        continents: List<String>? = null,
+        flagUrl: String? = null,
+        flagDescription: String? = null,
+        population: Int? = null,
     ) = CountryModel(
         id,
         commonName,
         officialName,
+        capitals,
         continents,
         flagUrl,
         flagDescription,

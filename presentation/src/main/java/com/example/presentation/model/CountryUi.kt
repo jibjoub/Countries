@@ -14,12 +14,12 @@ data class CountryUi(
     companion object {
         fun mapToCountryUi(countryModel: CountryModel) =
             CountryUi(
-                id = countryModel.id,
-                commonName = countryModel.commonName,
-                officialName = countryModel.officialName,
+                id = countryModel.id ?: "Not defined",
+                commonName = countryModel.commonName ?: "Not defined",
+                officialName = countryModel.officialName ?: "Not defined",
                 continents = countryModel.continents?.joinToString(", ") ?: "Not defined",
-                flagUrl = countryModel.flagUrl,
-                flagDescription = countryModel.flagDescription,
+                flagUrl = countryModel.flagUrl ?: "Not defined",
+                flagDescription = countryModel.flagDescription ?: "Not defined",
                 population = countryModel.population?.let { "${it.div(1000000)}M" } ?: "Not defined",
             )
     }

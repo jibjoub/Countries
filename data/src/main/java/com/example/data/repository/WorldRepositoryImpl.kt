@@ -34,12 +34,13 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
 
     fun mapToCountryModel(country: CountryEntity): CountryModel {
         return CountryModel(
-            id = country.id ?: "Not defined",
-            commonName = country.name?.common ?: "Not defined",
-            officialName = country.name?.official ?: "Not defined",
+            id = country.id,
+            commonName = country.name?.common,
+            officialName = country.name?.official,
+            capitals = country.capitals,
             continents = country.continents,
-            flagUrl = country.flags?.url ?: "Not defined",
-            flagDescription = country.flags?.description ?: "Not defined",
+            flagUrl = country.flags?.url,
+            flagDescription = country.flags?.description,
             population = country.population,
         )
     }
