@@ -22,6 +22,18 @@ class CountryUiTest {
     }
 
     @Test
+    fun `Given a CountryModel with a list of 2 capitals, when mapping it to CountryUi, then the different capitals should be separated by a comma and a space`() {
+        val multipleCapitalsCountryModel =
+            countryModelBuilder(
+                commonName = "Chile",
+                capitals = listOf("Santiago", "Valparaiso"),
+            )
+        val countryUi = CountryUi.mapToCountryUi(multipleCapitalsCountryModel)
+
+        assertEquals("Santiago, Valparaiso", countryUi.capitals)
+    }
+
+    @Test
     fun `Given a CountryModel with a valid value of population, when mapping it to CountryUi, then the population should be written in millions`() {
         val populationCountryModel = countryModelBuilder(population = 25_000_000)
         val countryUi = CountryUi.mapToCountryUi(populationCountryModel)
@@ -31,8 +43,8 @@ class CountryUiTest {
 
     @Test
     fun `Given a CountryModel with null value of population, when mapping it to CountryUi, then the continent value should be Not defined`() {
-        val populationCountryModel = countryModelBuilder(population = null)
-        val countryUi = CountryUi.mapToCountryUi(populationCountryModel)
+        val nullPopulationCountryModel = countryModelBuilder()
+        val countryUi = CountryUi.mapToCountryUi(nullPopulationCountryModel)
 
         assertEquals("Not defined", countryUi.population)
     }

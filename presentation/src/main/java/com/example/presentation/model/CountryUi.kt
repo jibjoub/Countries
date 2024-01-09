@@ -6,6 +6,7 @@ data class CountryUi(
     val id: String,
     val commonName: String,
     val officialName: String,
+    val capitals: String,
     val continents: String,
     val flagUrl: String,
     val flagDescription: String,
@@ -17,10 +18,15 @@ data class CountryUi(
                 id = countryModel.id ?: "Not defined",
                 commonName = countryModel.commonName ?: "Not defined",
                 officialName = countryModel.officialName ?: "Not defined",
-                continents = countryModel.continents?.joinToString(", ") ?: "Not defined",
+                capitals = itemSeparator(countryModel.capitals),
+                continents = itemSeparator(countryModel.continents),
                 flagUrl = countryModel.flagUrl ?: "Not defined",
                 flagDescription = countryModel.flagDescription ?: "Not defined",
                 population = countryModel.population?.let { "${it.div(1000000)}M" } ?: "Not defined",
             )
+
+        private fun itemSeparator(items: List<String>?): String {
+            return items?.joinToString(", ") ?: "Not defined"
+        }
     }
 }

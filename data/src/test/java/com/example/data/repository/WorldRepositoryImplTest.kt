@@ -14,7 +14,15 @@ class WorldRepositoryImplTest {
 
     @Test
     fun `Given a CountryEntity, when mapping to CountryModel, the fields should be correctly mapped`() {
-        val emptyCountryEntity = CountryEntity("EST", NameEntity("Estonia", "Republic of Estonia"), listOf("Tallinn"), listOf("Europe"), FlagEntity("test", "test"), 1_331_057)
+        val emptyCountryEntity =
+            CountryEntity(
+                "EST",
+                NameEntity("Estonia", "Republic of Estonia"),
+                listOf("Tallinn"),
+                listOf("Europe"),
+                FlagEntity("test", "test"),
+                1_331_057,
+            )
         val emptyCountryModel = worldRepositoryImpl.mapToCountryModel(emptyCountryEntity)
 
         assertEquals(emptyCountryModel.id, emptyCountryEntity.id)
