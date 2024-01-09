@@ -56,14 +56,14 @@ class MainActivity : ComponentActivity() {
 fun Loading() {
     Box(
         modifier =
-        Modifier
-            .fillMaxSize(),
+            Modifier
+                .fillMaxSize(),
     ) {
         CircularProgressIndicator(
             modifier =
-            Modifier
-                .width(64.dp)
-                .align(Alignment.Center),
+                Modifier
+                    .width(64.dp)
+                    .align(Alignment.Center),
             color = MaterialTheme.colorScheme.primary,
         )
     }
@@ -73,12 +73,12 @@ fun Loading() {
 fun Error() {
     Box(
         modifier =
-        Modifier
-            .fillMaxSize(),
+            Modifier
+                .fillMaxSize(),
     ) {
         Text(
             "Something went wrong, please check that you are connected to the " +
-                    "Internet. If it persists, contact the developer.",
+                "Internet. If it persists, contact the developer.",
             modifier = Modifier.align(Alignment.Center),
             textAlign = TextAlign.Center,
         )
