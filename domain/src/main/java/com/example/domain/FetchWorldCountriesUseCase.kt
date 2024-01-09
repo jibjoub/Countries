@@ -5,6 +5,6 @@ import com.example.domain.model.CountryModel
 import com.example.domain.repository.WorldRepository
 import kotlinx.coroutines.flow.Flow
 
-class FetchCountriesUseCase(private val countriesRepository: WorldRepository) {
-    operator fun invoke(): Flow<DataState<List<CountryModel>>> = countriesRepository.fetchCountries()
+class FetchWorldCountriesUseCase(private val countriesRepository: WorldRepository) {
+    operator fun invoke(): Flow<DataState<List<CountryModel>>> = countriesRepository.fetchWorldCountries()
 }

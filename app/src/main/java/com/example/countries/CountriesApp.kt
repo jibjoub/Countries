@@ -3,7 +3,7 @@ package com.example.countries
 import android.app.Application
 import com.example.data.remote.api.RetrofitInstance
 import com.example.data.repository.WorldRepositoryImpl
-import com.example.domain.FetchCountriesUseCase
+import com.example.domain.FetchWorldCountriesUseCase
 import com.example.domain.repository.WorldRepository
 import com.example.presentation.viewmodel.CountriesViewModel
 import org.koin.android.ext.koin.androidContext
@@ -20,7 +20,7 @@ class CountriesApp : Application() {
                 viewModel { CountriesViewModel(get()) }
 
                 single {
-                    FetchCountriesUseCase(get())
+                    FetchWorldCountriesUseCase(get())
                 }
 
                 single<WorldRepository> {

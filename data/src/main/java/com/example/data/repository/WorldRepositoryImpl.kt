@@ -9,10 +9,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : WorldRepository {
-    override fun fetchCountries(): Flow<DataState<List<CountryModel>>> =
+    override fun fetchWorldCountries(): Flow<DataState<List<CountryModel>>> =
         flow {
             try {
-                val response = retrofitInstance.apiService.getAsianCountries()
+                val response = retrofitInstance.apiService.getWorldCountries()
                 when {
                     response.isSuccessful -> {
                         val body = response.body()

@@ -5,5 +5,5 @@ import com.example.domain.model.CountryModel
 import kotlinx.coroutines.flow.Flow
 
 interface WorldRepository {
-    fun fetchCountries(): Flow<DataState<List<CountryModel>>>
+    fun fetchWorldCountries(): Flow<DataState<List<CountryModel>>>
 }

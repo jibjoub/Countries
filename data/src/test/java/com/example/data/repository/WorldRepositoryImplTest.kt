@@ -8,7 +8,7 @@ import org.junit.Test
 
 class WorldRepositoryImplTest {
     private val retrofitInstance: RetrofitInstance = mockk()
-    private val worldRepositoryImpl: WorldRepositoryImpl = WorldRepositoryImpl(retrofitInstance)
+    private val worldRepositoryImpl = WorldRepositoryImpl(retrofitInstance)
 
     @Test
     fun `Given a CountryEntity with all null fields, when mapping to CountryModel, the fields are not defined for Strings and null for the other types`() {

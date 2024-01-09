@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadCountriesData()
+        viewModel.loadWorldCountriesData()
         setContent {
             CountriesTheme {
                 Surface(
