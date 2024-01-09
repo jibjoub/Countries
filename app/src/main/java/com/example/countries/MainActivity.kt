@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.common.models.DataState
 import com.example.countries.ui.theme.CountriesTheme
@@ -34,7 +33,6 @@ class MainActivity : ComponentActivity() {
         viewModel.loadCountriesData()
         setContent {
             CountriesTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = Color(android.graphics.Color.parseColor("#f2ede4")),
@@ -43,32 +41,9 @@ class MainActivity : ComponentActivity() {
                     when (val state = countries) {
                         is DataState.Success -> CountryList(countries = state.data)
                         is DataState.Loading ->
-                            Box(
-                                modifier =
-                                    Modifier
-                                        .fillMaxSize(),
-                            ) {
-                                CircularProgressIndicator(
-                                    modifier =
-                                        Modifier
-                                            .width(64.dp)
-                                            .align(Alignment.Center),
-                                    color = MaterialTheme.colorScheme.primary,
-                                )
-                            }
+                            Loading()
                         else -> {
-                            Box(
-                                modifier =
-                                    Modifier
-                                        .fillMaxSize(),
-                            ) {
-                                Text(
-                                    "Something went wrong, please check that you are connected to the " +
-                                        "Internet. If it persists, contact the developer.",
-                                    modifier = Modifier.align(Alignment.Center),
-                                    textAlign = TextAlign.Center,
-                                )
-                            }
+                            Error()
                         }
                     }
                 }
@@ -78,27 +53,34 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun Greeting(
-    name: String,
-    modifier: Modifier = Modifier,
-) {
-    if (name.isNullOrBlank()) {
-        Text(
-            text = "Hello Loading!",
-            modifier = modifier,
-        )
-    } else {
-        Text(
-            text = "Hello $name!",
-            modifier = modifier,
+fun Loading() {
+    Box(
+        modifier =
+        Modifier
+            .fillMaxSize(),
+    ) {
+        CircularProgressIndicator(
+            modifier =
+            Modifier
+                .width(64.dp)
+                .align(Alignment.Center),
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    CountriesTheme {
-        Greeting("Android")
+fun Error() {
+    Box(
+        modifier =
+        Modifier
+            .fillMaxSize(),
+    ) {
+        Text(
+            "Something went wrong, please check that you are connected to the " +
+                    "Internet. If it persists, contact the developer.",
+            modifier = Modifier.align(Alignment.Center),
+            textAlign = TextAlign.Center,
+        )
     }
 }
