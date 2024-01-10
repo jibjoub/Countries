@@ -6,4 +6,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface WorldRepository {
     fun fetchWorldCountries(): Flow<DataState<List<CountryModel>>>
+
+    fun fetchCountryById(countryId: String): Flow<DataState<CountryModel>>
 }

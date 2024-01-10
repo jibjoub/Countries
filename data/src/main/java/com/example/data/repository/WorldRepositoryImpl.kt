@@ -22,9 +22,35 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
                                 val countries = body.shuffled().map { mapToCountryModel(it) }
                                 emit(DataState.Success(countries))
                             }
+
                             else -> emit(DataState.Error(Exception("Response body is null")))
                         }
                     }
+
+                    else -> emit(DataState.Error(Exception("Response is not successful. Code: ${response.code()}")))
+                }
+            } catch (e: Exception) {
+                emit(DataState.Error(e))
+            }
+        }
+
+    // Code is very similar to the function above :/
+    override fun fetchCountryById(countryId: String): Flow<DataState<CountryModel>> =
+        flow {
+            try {
+                val response = retrofitInstance.apiService.getCountryById(countryId)
+                when {
+                    response.isSuccessful -> {
+                        val body = response.body()
+                        when {
+                            body != null -> {
+                                emit(DataState.Success(mapToCountryModel(body)))
+                            }
+
+                            else -> emit(DataState.Error(Exception("Response body is null")))
+                        }
+                    }
+
                     else -> emit(DataState.Error(Exception("Response is not successful. Code: ${response.code()}")))
                 }
             } catch (e: Exception) {

@@ -1,4 +1,4 @@
-package com.example.domain
+package com.example.domain.usecase
 
 import com.example.common.models.DataState
 import com.example.domain.model.CountryModel
