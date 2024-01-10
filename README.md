@@ -6,6 +6,7 @@ Countries is a project to practice CLEAN Android development with focus on the b
 
 The app is fetching all the countries from the https://restcountries.com/ API and displays them in a list.
 
-![image](https://github.com/jibjoub/Countries/assets/46657670/a6541d63-bb77-43f1-b1ef-792139114874)
+![image](https://github.com/jibjoub/Countries/assets/46657670/e66eda71-8400-4874-8e73-e8e59d0966c3)
+
 
 
