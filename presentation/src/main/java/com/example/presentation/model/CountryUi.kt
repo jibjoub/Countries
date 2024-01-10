@@ -30,16 +30,11 @@ data class CountryUi(
         }
 
         private fun populationParser(population: Int?): String {
-            if (population == null) {
-                return "Not defined"
-            }
-            if (population < 1_000) {
-                return population.toString()
-            }
-            if (population < 1_000_000) {
-                return "${population.div(1_000)}K"
-            } else {
-                return "${population.div(1_000_000)}M"
+            return when {
+                population == null -> "Not defined"
+                population < 1_000 -> population.toString()
+                population < 1_000_000 -> "${population / 1_000}K"
+                else -> "${population / 1_000_000}M"
             }
         }
     }
