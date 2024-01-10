@@ -34,11 +34,19 @@ class CountryUiTest {
     }
 
     @Test
-    fun `Given a CountryModel with a valid value of population, when mapping it to CountryUi, then the population should be written in millions`() {
-        val populationCountryModel = countryModelBuilder(population = 25_000_000)
-        val countryUi = CountryUi.mapToCountryUi(populationCountryModel)
+    fun `Given a CountryModel with a valid value of population, when mapping it to CountryUi, then the population should be written in a specific way`() {
+        val millionsCountryModel = countryModelBuilder(population = 25_000_000)
+        val millionsCountryUi = CountryUi.mapToCountryUi(millionsCountryModel)
 
-        assertEquals(countryUi.population, "25M")
+        val thousandsCountryModel = countryModelBuilder(population = 250_000)
+        val thousandsCountryUi = CountryUi.mapToCountryUi(thousandsCountryModel)
+
+        val tinyCountryModel = countryModelBuilder(population = 500)
+        val tinyCountryUi = CountryUi.mapToCountryUi(tinyCountryModel)
+
+        assertEquals("25M", millionsCountryUi.population)
+        assertEquals("250K", thousandsCountryUi.population)
+        assertEquals("500", tinyCountryUi.population)
     }
 
     @Test

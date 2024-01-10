@@ -22,11 +22,25 @@ data class CountryUi(
                 continents = itemSeparator(countryModel.continents),
                 flagUrl = countryModel.flagUrl ?: "Not defined",
                 flagDescription = countryModel.flagDescription ?: "Not defined",
-                population = countryModel.population?.let { "${it.div(1000000)}M" } ?: "Not defined",
+                population = populationParser(countryModel.population),
             )
 
         private fun itemSeparator(items: List<String>?): String {
             return items?.joinToString(", ") ?: "Not defined"
+        }
+
+        private fun populationParser(population: Int?): String {
+            if (population == null) {
+                return "Not defined"
+            }
+            if (population < 1_000) {
+                return population.toString()
+            }
+            if (population < 1_000_000) {
+                return "${population.div(1_000)}K"
+            } else {
+                return "${population.div(1_000_000)}M"
+            }
         }
     }
 }
