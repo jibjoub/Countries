@@ -9,6 +9,7 @@ import com.example.domain.FetchWorldCountriesUseCase
 import com.example.presentation.model.CountryUi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -16,9 +17,13 @@ class CountriesViewModel(private val fetchWorldCountriesUseCase: FetchWorldCount
     private val _countriesUiState = MutableLiveData<DataState<List<CountryUi>>>()
     val countriesUiState: LiveData<DataState<List<CountryUi>>> get() = _countriesUiState
 
+    private val _isRefreshing = MutableStateFlow(false)
+    val isRefreshing = _isRefreshing
+
     private val viewModelScope = CoroutineScope(Dispatchers.Main)
 
     fun loadWorldCountriesData() {
+        _countriesUiState.value = DataState.Loading
         viewModelScope.launch {
             fetchWorldCountriesUseCase.invoke().map { dataState ->
                 dataState.mapData { countryModels ->
@@ -27,6 +32,14 @@ class CountriesViewModel(private val fetchWorldCountriesUseCase: FetchWorldCount
             }.collect { transformedState ->
                 _countriesUiState.value = transformedState
             }
+        }
+    }
+
+    fun refresh()  {
+        viewModelScope.launch {
+            _isRefreshing.emit(true)
+            loadWorldCountriesData()
+            _isRefreshing.emit(false)
         }
     }
 }
