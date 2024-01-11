@@ -44,7 +44,7 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
                         val body = response.body()
                         when {
                             body != null -> {
-                                emit(DataState.Success(mapToCountryModel(body)))
+                                emit(DataState.Success(mapToCountryModel(body.first())))
                             }
 
                             else -> emit(DataState.Error(Exception("Response body is null")))

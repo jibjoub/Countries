@@ -12,5 +12,5 @@ interface ApiService {
     @GET("alpha/{id}")
     suspend fun getCountryById(
         @Path("id") id: String,
-    ): Response<CountryEntity>
+    ): Response<List<CountryEntity>>
 }
