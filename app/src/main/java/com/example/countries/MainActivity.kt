@@ -35,16 +35,17 @@ import com.example.common.models.DataState
 import com.example.countries.ui.theme.CountriesTheme
 import com.example.presentation.model.CountryUi
 import com.example.presentation.view.CountryList
-import com.example.presentation.viewmodel.CountriesViewModel
+import com.example.presentation.viewmodel.MainViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : ComponentActivity() {
-    private val viewModel: CountriesViewModel by viewModel()
+    private val viewModel: MainViewModel by viewModel()
 
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel.loadWorldCountriesData()
+        // This is too heavy still TODO clean
         setContent {
             CountriesTheme {
                 val isRefreshing = viewModel.isRefreshing.collectAsStateWithLifecycle()
