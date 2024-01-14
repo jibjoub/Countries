@@ -3,7 +3,6 @@ package com.example.countries
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -16,21 +15,16 @@ import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material.Button
 import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.pullrefresh.PullRefreshIndicator
-import androidx.compose.material.pullrefresh.pullRefresh
-import androidx.compose.material.pullrefresh.rememberPullRefreshState
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.common.models.DataState
 import com.example.countries.ui.theme.CountriesTheme
 import com.example.presentation.model.CountryUi
@@ -44,39 +38,17 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterialApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadWorldCountriesData()
-        // This is too heavy still TODO clean
         setContent {
             CountriesTheme {
-                val isRefreshing = viewModel.isRefreshing.collectAsStateWithLifecycle()
-                val pullRefreshState =
-                    rememberPullRefreshState(
-                        refreshing = isRefreshing.value,
-                        onRefresh = {
-                            viewModel.refresh()
-                        },
-                    )
-                Box(
-                    modifier =
-                        Modifier
-                            .fillMaxSize()
-                            .pullRefresh(pullRefreshState)
-                            .background(Color(android.graphics.Color.parseColor("#f2ede4"))),
-                ) {
-                    val countries: DataState<List<CountryUi>> by viewModel.countriesUiState.observeAsState(DataState.Loading)
-                    when (val state = countries) {
-                        is DataState.Success -> CountryList(countries = state.data)
-                        is DataState.Loading ->
-                            Loading()
-                        else -> {
-                            Error { viewModel.loadWorldCountriesData() }
-                        }
+                val uiState: DataState<List<CountryUi>> by viewModel.countriesUiState.collectAsState()
+                when (val state = uiState) {
+                    is DataState.Success -> CountryList(countries = state.data)
+                    is DataState.Loading ->
+                        Loading()
+
+                    else -> {
+                        Error()
                     }
-                    PullRefreshIndicator(
-                        refreshing = isRefreshing.value,
-                        state = pullRefreshState,
-                        modifier = Modifier.align(Alignment.TopCenter),
-                    )
                 }
             }
         }
