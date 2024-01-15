@@ -5,8 +5,8 @@ import com.example.domain.model.CountryModel
 import com.example.domain.repository.WorldRepository
 import kotlinx.coroutines.flow.Flow
 
-class FetchCountryByIdUseCase(private val countriesRepository: WorldRepository) {
-    fun getCountryById(id: String): Flow<DataState<CountryModel>> {
+class GetCountryByIdUseCase(private val countriesRepository: WorldRepository) {
+    operator fun invoke(id: String): Flow<DataState<CountryModel>> {
         return countriesRepository.fetchCountryById(id)
     }
 }

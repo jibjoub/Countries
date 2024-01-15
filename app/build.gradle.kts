@@ -71,9 +71,6 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     // Koin
     implementation("io.insert-koin:koin-android:3.2.2")
-    // Live Data TODO check if it can be removed
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
     // Navigation
     implementation("androidx.navigation:navigation-compose:$navVersion")
     implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
