@@ -9,7 +9,6 @@ import com.example.domain.usecase.GetWorldCountriesUseCase
 import com.example.presentation.viewmodel.DetailViewModel
 import com.example.presentation.viewmodel.MainViewModel
 import org.koin.android.ext.koin.androidContext
-import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.dsl.module
 
@@ -19,8 +18,11 @@ class CountriesApp : Application() {
 
         val appModule =
             module {
-                viewModel { MainViewModel(get()) }
-                viewModel { DetailViewModel(get()) }
+                single { RetrofitInstance }
+
+                single<WorldRepository> {
+                    WorldRepositoryImpl(get())
+                }
 
                 single {
                     GetWorldCountriesUseCase(get())
@@ -29,11 +31,8 @@ class CountriesApp : Application() {
                     GetCountryByIdUseCase(get())
                 }
 
-                single<WorldRepository> {
-                    WorldRepositoryImpl(get())
-                }
-
-                single { RetrofitInstance }
+                single { MainViewModel(get()) }
+                single { DetailViewModel(get()) }
             }
 
         startKoin {

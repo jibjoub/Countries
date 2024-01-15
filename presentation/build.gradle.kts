@@ -53,6 +53,8 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     // Async images
     implementation("io.coil-kt:coil-compose:2.0.0-rc01")
+    // Koin
+    implementation("io.insert-koin:koin-android:3.2.2")
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")

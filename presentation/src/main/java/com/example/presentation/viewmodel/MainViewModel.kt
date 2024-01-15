@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class MainViewModel(getWorldCountriesUseCase: GetWorldCountriesUseCase) :
+class MainViewModel(private val getWorldCountriesUseCase: GetWorldCountriesUseCase) :
     ViewModel() {
     val countriesUiState: StateFlow<DataState<List<CountryUi>>> =
         getWorldCountriesUseCase.invoke().map { dataState ->
