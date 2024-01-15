@@ -56,6 +56,8 @@ ktlint {
 }
 
 dependencies {
+    val navVersion = "2.7.6"
+
     implementation(project(":data"))
 
     implementation("androidx.core:core-ktx:1.9.0")
@@ -69,9 +71,11 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     // Koin
     implementation("io.insert-koin:koin-android:3.2.2")
-    // Live Data
+    // Live Data TODO check if it can be removed
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
+    // Navigation
+    implementation("androidx.navigation:navigation-compose:$navVersion")
     implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
     implementation("androidx.compose.material:material:1.4.0-beta01")
     implementation(project(mapOf("path" to ":domain")))
