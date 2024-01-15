@@ -6,15 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.material.Button
-import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.Surface
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -39,15 +35,17 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val uiState: DataState<List<CountryUi>> by viewModel.countriesUiState.collectAsState()
             CountriesTheme {
-                val uiState: DataState<List<CountryUi>> by viewModel.countriesUiState.collectAsState()
-                when (val state = uiState) {
-                    is DataState.Success -> CountryList(countries = state.data)
-                    is DataState.Loading ->
-                        Loading()
+                Surface(color = MaterialTheme.colorScheme.background) {
+                    when (val state = uiState) {
+                        is DataState.Success -> CountryList(countries = state.data)
+                        is DataState.Loading ->
+                            Loading()
 
-                    else -> {
-                        Error()
+                        else -> {
+                            Error()
+                        }
                     }
                 }
             }
@@ -73,7 +71,7 @@ fun Loading() {
 }
 
 @Composable
-fun Error(onRetry: () -> Unit) {
+fun Error() {
     Box(
         modifier =
             Modifier
@@ -94,22 +92,6 @@ fun Error(onRetry: () -> Unit) {
                 modifier = Modifier.align(Alignment.CenterHorizontally),
                 textAlign = TextAlign.Center,
             )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                onClick = onRetry,
-                modifier =
-                    Modifier
-                        .wrapContentWidth()
-                        .padding(8.dp),
-                colors =
-                    ButtonDefaults.buttonColors(
-                        backgroundColor = MaterialTheme.colorScheme.primary,
-                    ),
-            ) {
-                Text("Retry", Modifier)
-            }
         }
     }
 }
