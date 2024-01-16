@@ -1,6 +1,8 @@
 package com.example.presentation.model
 
 import com.example.domain.model.CountryModel
+import java.math.BigDecimal
+import java.math.RoundingMode
 
 data class CountryUi(
     val id: String,
@@ -34,7 +36,8 @@ data class CountryUi(
                 population == null -> "Not defined"
                 population < 1_000 -> population.toString()
                 population < 1_000_000 -> "${population / 1_000}K"
-                else -> "${population / 1_000_000}M"
+                population < 1_000_000_000 -> "${population / 1_000_000}M"
+                else -> "${BigDecimal(population.toDouble() / 1_000_000_000).setScale(3, RoundingMode.HALF_EVEN)}B"
             }
         }
     }

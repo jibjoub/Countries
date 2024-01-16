@@ -35,6 +35,9 @@ class CountryUiTest {
 
     @Test
     fun `Given a CountryModel with a valid value of population, when mapping it to CountryUi, then the population should be written in a specific way`() {
+        val billionsCountryModel = countryModelBuilder(population = 1_380_743_321)
+        val billionsCountryUi = CountryUi.mapToCountryUi(billionsCountryModel)
+
         val millionsCountryModel = countryModelBuilder(population = 25_000_000)
         val millionsCountryUi = CountryUi.mapToCountryUi(millionsCountryModel)
 
@@ -44,6 +47,7 @@ class CountryUiTest {
         val tinyCountryModel = countryModelBuilder(population = 500)
         val tinyCountryUi = CountryUi.mapToCountryUi(tinyCountryModel)
 
+        assertEquals("1.381B", billionsCountryUi.population)
         assertEquals("25M", millionsCountryUi.population)
         assertEquals("250K", thousandsCountryUi.population)
         assertEquals("500", tinyCountryUi.population)
