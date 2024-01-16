@@ -1,5 +1,6 @@
 package com.example.presentation.view
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -20,26 +21,36 @@ import coil.compose.AsyncImage
 import com.example.presentation.model.CountryUi
 
 @Composable
-fun CountryList(countries: List<CountryUi>) {
+fun CountryList(
+    countries: List<CountryUi>,
+    onItemClick: (CountryUi) -> Unit,
+) {
     LazyColumn {
         items(countries) { country ->
-            CountryItem(country = country)
+            CountryItem(country = country, onItemClick)
         }
     }
 }
 
 @Composable
-fun CountryItem(country: CountryUi) {
+fun CountryItem(
+    country: CountryUi,
+    onItemClick: (CountryUi) -> Unit,
+) {
     Row(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
+                .padding(16.dp)
+                .clickable { onItemClick(country) },
     ) {
         AsyncImage(
             model = country.flagUrl,
             contentDescription = "Flag",
-            modifier = Modifier.size(64.dp).align(Alignment.CenterVertically),
+            modifier =
+                Modifier
+                    .size(64.dp)
+                    .align(Alignment.CenterVertically),
         )
 
         Spacer(modifier = Modifier.width(16.dp))

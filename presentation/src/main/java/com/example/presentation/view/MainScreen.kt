@@ -17,18 +17,25 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
+import com.example.presentation.navigation.Screen
 import com.example.presentation.viewmodel.MainViewModel
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MainScreen() {
+fun MainScreen(navController: NavController) {
     val mainViewModel: MainViewModel = koinViewModel()
     val uiState: DataState<List<CountryUi>> by mainViewModel.countriesUiState.collectAsState()
+
+    val onItemClick = { countryUi: CountryUi ->
+        navController.navigate(Screen.DetailScreen.route + "/" + countryUi.id)
+    }
+
     Surface(color = MaterialTheme.colorScheme.background) {
         when (val state = uiState) {
-            is DataState.Success -> CountryList(countries = state.data)
+            is DataState.Success -> CountryList(countries = state.data, onItemClick)
             is DataState.Loading ->
                 Loading()
 
