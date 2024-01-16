@@ -20,10 +20,12 @@ import androidx.compose.ui.unit.dp
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
 import com.example.presentation.viewmodel.MainViewModel
+import org.koin.androidx.compose.koinViewModel
 
 @Composable
-fun MainScreen(viewModel: MainViewModel) {
-    val uiState: DataState<List<CountryUi>> by viewModel.countriesUiState.collectAsState()
+fun MainScreen() {
+    val mainViewModel: MainViewModel = koinViewModel()
+    val uiState: DataState<List<CountryUi>> by mainViewModel.countriesUiState.collectAsState()
     Surface(color = MaterialTheme.colorScheme.background) {
         when (val state = uiState) {
             is DataState.Success -> CountryList(countries = state.data)
