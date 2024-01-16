@@ -20,7 +20,7 @@ fun CountriesNavHost() {
             route = Screen.DetailScreen.route + "/{id}",
             arguments = listOf(navArgument("id") { type = NavType.StringType }),
         ) { backStackEntry ->
-            DetailScreen(backStackEntry.arguments?.getString("id"))
+            backStackEntry.arguments?.getString("id")?.let { DetailScreen(it) }
         }
     }
 }

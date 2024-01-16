@@ -32,7 +32,7 @@ class CountriesApp : Application() {
                 }
 
                 single { MainViewModel(get()) }
-                single { DetailViewModel(get()) }
+                factory { DetailViewModel(get()) }
             }
 
         startKoin {
