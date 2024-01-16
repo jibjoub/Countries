@@ -38,18 +38,18 @@ class CountryUiTest {
         val billionsCountryModel = countryModelBuilder(population = 1_380_743_321)
         val billionsCountryUi = CountryUi.mapToCountryUi(billionsCountryModel)
 
-        val millionsCountryModel = countryModelBuilder(population = 25_000_000)
+        val millionsCountryModel = countryModelBuilder(population = 25_937_764)
         val millionsCountryUi = CountryUi.mapToCountryUi(millionsCountryModel)
 
-        val thousandsCountryModel = countryModelBuilder(population = 250_000)
+        val thousandsCountryModel = countryModelBuilder(population = 250_521)
         val thousandsCountryUi = CountryUi.mapToCountryUi(thousandsCountryModel)
 
         val tinyCountryModel = countryModelBuilder(population = 500)
         val tinyCountryUi = CountryUi.mapToCountryUi(tinyCountryModel)
 
         assertEquals("1.381B", billionsCountryUi.population)
-        assertEquals("25M", millionsCountryUi.population)
-        assertEquals("250K", thousandsCountryUi.population)
+        assertEquals("26M", millionsCountryUi.population)
+        assertEquals("251K", thousandsCountryUi.population)
         assertEquals("500", tinyCountryUi.population)
     }
 

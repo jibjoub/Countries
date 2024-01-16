@@ -35,10 +35,18 @@ data class CountryUi(
             return when {
                 population == null -> "Not defined"
                 population < 1_000 -> population.toString()
-                population < 1_000_000 -> "${population / 1_000}K"
-                population < 1_000_000_000 -> "${population / 1_000_000}M"
-                else -> "${BigDecimal(population.toDouble() / 1_000_000_000).setScale(3, RoundingMode.HALF_EVEN)}B"
+                population < 1_000_000 -> "${divideAndRound(population, 1_000, 0)}K"
+                population < 1_000_000_000 -> "${divideAndRound(population, 1_000_000, 0)}M"
+                else -> "${divideAndRound(population, 1_000_000_000, 3)}B"
             }
+        }
+
+        private fun divideAndRound(
+            population: Int,
+            divisor: Int,
+            decimals: Int,
+        ): BigDecimal {
+            return BigDecimal(population.toDouble() / divisor).setScale(decimals, RoundingMode.HALF_EVEN)
         }
     }
 }
