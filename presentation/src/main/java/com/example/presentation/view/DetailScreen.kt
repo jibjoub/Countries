@@ -10,9 +10,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
@@ -48,6 +50,7 @@ fun CountryDetails(countryUi: CountryUi) {
             Modifier
                 .fillMaxSize()
                 .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         FlagImage(flagUrl = countryUi.flagUrl)
 
@@ -57,6 +60,7 @@ fun CountryDetails(countryUi: CountryUi) {
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(vertical = 8.dp),
+            textAlign = TextAlign.Center,
         )
 
         // Official Name
@@ -94,6 +98,7 @@ fun CountryDetails(countryUi: CountryUi) {
             text = countryUi.flagDescription,
             fontSize = 16.sp,
             modifier = Modifier.padding(vertical = 8.dp),
+            textAlign = TextAlign.Center,
         )
     }
 }
