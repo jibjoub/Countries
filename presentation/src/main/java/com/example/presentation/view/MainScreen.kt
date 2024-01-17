@@ -25,10 +25,8 @@ import com.example.presentation.viewmodel.MainViewModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun MainScreen(
-    navController: NavController,
-    mainViewModel: MainViewModel = getViewModel(),
-) {
+fun MainScreen(navController: NavController) {
+    val mainViewModel: MainViewModel = getViewModel()
     val uiState by mainViewModel.countriesUiState.observeAsState(initial = DataState.Loading)
 
     val onItemClick = { countryUi: CountryUi ->

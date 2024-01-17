@@ -6,24 +6,19 @@ import com.example.common.models.DataState
 import com.example.common.models.DataState.Loading.mapData
 import com.example.domain.usecase.GetCountryByIdUseCase
 import com.example.presentation.model.CountryUi
-import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.stateIn
 
 class DetailViewModel(private val getCountryByIdUseCase: GetCountryByIdUseCase) :
     ViewModel() {
-    private val _detailUiState = MutableStateFlow<DataState<CountryUi>>(DataState.Loading)
-    val detailUiState: StateFlow<DataState<CountryUi>> = _detailUiState.asStateFlow()
-
-    fun getDetailById(id: String) {
-        viewModelScope.launch {
-            getCountryByIdUseCase.invoke(id).map { state ->
-                state.mapData { countryModel -> CountryUi.mapToCountryUi(countryModel) }
-            }.collect {
-                _detailUiState.value = it
-            }
-        }
-    }
+    operator fun invoke(id: String): StateFlow<DataState<CountryUi>> =
+        getCountryByIdUseCase(id).map { state ->
+            state.mapData { countryModel -> CountryUi.mapToCountryUi(countryModel) }
+        }.stateIn(
+            initialValue = DataState.Loading,
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5_000),
+        )
 }

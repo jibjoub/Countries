@@ -23,12 +23,9 @@ import com.example.presentation.viewmodel.DetailViewModel
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun DetailScreen(
-    id: String,
-    detailViewModel: DetailViewModel = getViewModel(),
-) {
-    val uiState: DataState<CountryUi> by detailViewModel.detailUiState.collectAsState()
-    detailViewModel.getDetailById(id)
+fun DetailScreen(id: String) {
+    val detailViewModel: DetailViewModel = getViewModel()
+    val uiState: DataState<CountryUi> by detailViewModel(id).collectAsState()
     Surface {
         when (val state = uiState) {
             is DataState.Success -> CountryDetails(countryUi = state.data)
