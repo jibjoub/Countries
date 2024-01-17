@@ -31,7 +31,7 @@ import org.koin.androidx.compose.getViewModel
 @Composable
 fun MainScreen(navController: NavController) {
     val mainViewModel: MainViewModel = getViewModel()
-    val uiState by mainViewModel.countriesUiState.observeAsState(initial = DataState.Loading)
+    val uiState by mainViewModel.uiState.observeAsState(initial = DataState.Loading)
 
     val onItemClick = { countryUi: CountryUi ->
         navController.navigate(Screen.DetailScreen.route + "/" + countryUi.id)

@@ -43,6 +43,7 @@ fun CountryItem(
                 .padding(16.dp)
                 .clickable { onItemClick(country) },
     ) {
+        // Flag
         AsyncImageSvg(
             country.flagUrl,
             Modifier
@@ -53,9 +54,13 @@ fun CountryItem(
         Spacer(modifier = Modifier.width(16.dp))
 
         Column {
+            // Name
             Text(text = country.commonName, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            // Capitals
             Text(text = country.capitals, fontWeight = FontWeight.Medium, fontSize = 14.sp)
+            // Continents
             Text(text = country.continents, fontSize = 14.sp)
+            // Population
             Text(text = "${country.population} inhabitants", fontSize = 14.sp)
         }
     }

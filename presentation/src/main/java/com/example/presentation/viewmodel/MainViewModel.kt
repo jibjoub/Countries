@@ -11,10 +11,11 @@ import kotlinx.coroutines.flow.map
 
 class MainViewModel(getWorldCountries: GetWorldCountriesUseCase) :
     ViewModel() {
-    // I initially used a Flow here but it did trigger the remission every time the related
-    // Screen became visible again after being invisible for more than X seconds.
+    // I initially used a Flow here. But it updated the state every time the MainScreen
+    // became visible again after being invisible for more than X seconds. It was problematic when
+    // the user closed the DetailScreen and the list of Countries would change in MainScreen.
     // https://bladecoder.medium.com/kotlins-flow-in-viewmodels-it-s-complicated-556b472e281a
-    val countriesUiState: LiveData<DataState<List<CountryUi>>> =
+    val uiState: LiveData<DataState<List<CountryUi>>> =
         getWorldCountries().map { dataState ->
             dataState.mapData { countryModels ->
                 countryModels.map { CountryUi.mapToCountryUi(it) }

@@ -1,7 +1,7 @@
 package com.example.data.repository
 
 import com.example.common.models.DataState
-import com.example.data.entity.CountryEntity
+import com.example.data.entity.mapToCountryModel
 import com.example.data.remote.api.RetrofitInstance
 import com.example.domain.model.CountryModel
 import com.example.domain.repository.WorldRepository
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
 class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : WorldRepository {
-    override fun fetchWorldCountries(): Flow<DataState<List<CountryModel>>> =
+    override fun getWorldCountries(): Flow<DataState<List<CountryModel>>> =
         flow {
             try {
                 val response = retrofitInstance.apiService.getWorldCountries()
@@ -19,7 +19,7 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
                         when {
                             body != null -> {
                                 // Always give a random order to the countries fetched
-                                val countries = body.shuffled().map { mapToCountryModel(it) }
+                                val countries = body.shuffled().map { it.mapToCountryModel() }
                                 emit(DataState.Success(countries))
                             }
 
@@ -34,8 +34,8 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
             }
         }
 
-    // Code is very similar to the function above :/
-    override fun fetchCountryById(countryId: String): Flow<DataState<CountryModel>> =
+    // Code is very similar to the function above TODO write tests for the  and then avoid repetition by using a lambda
+    override fun getCountryById(countryId: String): Flow<DataState<CountryModel>> =
         flow {
             try {
                 val response = retrofitInstance.apiService.getCountryById(countryId)
@@ -44,7 +44,7 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
                         val body = response.body()
                         when {
                             body != null -> {
-                                emit(DataState.Success(mapToCountryModel(body.first())))
+                                emit(DataState.Success(body.first().mapToCountryModel()))
                             }
 
                             else -> emit(DataState.Error(Exception("Response body is null")))
@@ -57,17 +57,4 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
                 emit(DataState.Error(e))
             }
         }
-
-    fun mapToCountryModel(country: CountryEntity): CountryModel {
-        return CountryModel(
-            id = country.id,
-            commonName = country.name?.common,
-            officialName = country.name?.official,
-            capitals = country.capitals,
-            continents = country.continents,
-            flagUrl = country.flags?.url,
-            flagDescription = country.flags?.description,
-            population = country.population,
-        )
-    }
 }

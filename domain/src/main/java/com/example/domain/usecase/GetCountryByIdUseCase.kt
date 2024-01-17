@@ -7,6 +7,6 @@ import kotlinx.coroutines.flow.Flow
 
 class GetCountryByIdUseCase(private val countriesRepository: WorldRepository) {
     operator fun invoke(id: String): Flow<DataState<CountryModel>> {
-        return countriesRepository.fetchCountryById(id)
+        return countriesRepository.getCountryById(id)
     }
 }
