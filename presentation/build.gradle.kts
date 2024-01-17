@@ -52,7 +52,8 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
     // Async images
-    implementation("io.coil-kt:coil-compose:2.0.0-rc01")
+    implementation("io.coil-kt:coil-compose:2.0.0")
+    implementation("io.coil-kt:coil-svg:2.0.0")
     // Koin
     implementation("io.insert-koin:koin-core:3.3.2")
     implementation("io.insert-koin:koin-android:3.3.2")

@@ -15,9 +15,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import coil.compose.AsyncImage
+import coil.decode.SvgDecoder
+import coil.request.ImageRequest
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
 import com.example.presentation.navigation.Screen
@@ -87,4 +91,20 @@ fun Error() {
             )
         }
     }
+}
+
+@Composable
+fun AsyncImageSvg(
+    url: String,
+    modifier: Modifier,
+) {
+    AsyncImage(
+        model =
+            ImageRequest.Builder(LocalContext.current)
+                .data(url)
+                .decoderFactory(SvgDecoder.Factory())
+                .build(),
+        contentDescription = null,
+        modifier = modifier,
+    )
 }

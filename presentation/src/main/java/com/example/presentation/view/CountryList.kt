@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import coil.compose.AsyncImage
 import com.example.presentation.model.CountryUi
 
 @Composable
@@ -44,13 +43,11 @@ fun CountryItem(
                 .padding(16.dp)
                 .clickable { onItemClick(country) },
     ) {
-        AsyncImage(
-            model = country.flagUrl,
-            contentDescription = "Flag",
-            modifier =
-                Modifier
-                    .size(64.dp)
-                    .align(Alignment.CenterVertically),
+        AsyncImageSvg(
+            country.flagUrl,
+            Modifier
+                .size(64.dp)
+                .align(Alignment.CenterVertically),
         )
 
         Spacer(modifier = Modifier.width(16.dp))
