@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class DetailViewModel(private val getCountryByIdUseCase: GetCountryByIdUseCase) :
+class DetailViewModel(private val getCountryById: GetCountryByIdUseCase) :
     ViewModel() {
     operator fun invoke(id: String): StateFlow<DataState<CountryUi>> =
-        getCountryByIdUseCase(id).map { state ->
+        getCountryById(id).map { state ->
             state.mapData { countryModel -> CountryUi.mapToCountryUi(countryModel) }
         }.stateIn(
             initialValue = DataState.Loading,

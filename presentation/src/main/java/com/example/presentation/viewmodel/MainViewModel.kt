@@ -9,13 +9,13 @@ import com.example.domain.usecase.GetWorldCountriesUseCase
 import com.example.presentation.model.CountryUi
 import kotlinx.coroutines.flow.map
 
-class MainViewModel(getWorldCountriesUseCase: GetWorldCountriesUseCase) :
+class MainViewModel(getWorldCountries: GetWorldCountriesUseCase) :
     ViewModel() {
     // I initially used a Flow here but it did trigger the remission every time the related
     // Screen became visible again after being invisible for more than X seconds.
     // https://bladecoder.medium.com/kotlins-flow-in-viewmodels-it-s-complicated-556b472e281a
     val countriesUiState: LiveData<DataState<List<CountryUi>>> =
-        getWorldCountriesUseCase().map { dataState ->
+        getWorldCountries().map { dataState ->
             dataState.mapData { countryModels ->
                 countryModels.map { CountryUi.mapToCountryUi(it) }
             }
