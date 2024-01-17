@@ -9,7 +9,6 @@ import com.example.presentation.model.CountryUi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 
@@ -20,12 +19,11 @@ class DetailViewModel(private val getCountryByIdUseCase: GetCountryByIdUseCase) 
 
     fun getDetailById(id: String) {
         viewModelScope.launch {
-            val state =
-                getCountryByIdUseCase.invoke(id).map { state ->
-                    state.mapData { countryModel -> CountryUi.mapToCountryUi(countryModel) }
-                }.collect {
-                    _detailUiState.value = it
-                }
+            getCountryByIdUseCase.invoke(id).map { state ->
+                state.mapData { countryModel -> CountryUi.mapToCountryUi(countryModel) }
+            }.collect {
+                _detailUiState.value = it
+            }
         }
     }
 }

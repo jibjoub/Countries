@@ -11,8 +11,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
@@ -22,12 +22,14 @@ import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
 import com.example.presentation.navigation.Screen
 import com.example.presentation.viewmodel.MainViewModel
-import org.koin.androidx.compose.koinViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun MainScreen(navController: NavController) {
-    val mainViewModel: MainViewModel = koinViewModel()
-    val uiState: DataState<List<CountryUi>> by mainViewModel.countriesUiState.collectAsState()
+fun MainScreen(
+    navController: NavController,
+    mainViewModel: MainViewModel = getViewModel(),
+) {
+    val uiState by mainViewModel.countriesUiState.observeAsState(initial = DataState.Loading)
 
     val onItemClick = { countryUi: CountryUi ->
         navController.navigate(Screen.DetailScreen.route + "/" + countryUi.id)

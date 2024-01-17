@@ -21,13 +21,13 @@ import coil.compose.AsyncImage
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
 import com.example.presentation.viewmodel.DetailViewModel
-import org.koin.androidx.compose.koinViewModel
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun DetailScreen(id: String) {
-    // Can I give the id to an invoke function of it (knowing that it is injected with Koin)?
-    // To avoid having a method in DetailViewModel
-    val detailViewModel: DetailViewModel = koinViewModel()
+fun DetailScreen(
+    id: String,
+    detailViewModel: DetailViewModel = getViewModel(),
+) {
     val uiState: DataState<CountryUi> by detailViewModel.detailUiState.collectAsState()
     detailViewModel.getDetailById(id)
     Surface(color = MaterialTheme.colorScheme.background) {
