@@ -31,7 +31,7 @@ The app is fetching all the countries from the API and displays them in a list. 
 </div>
 
 ## Future improvements
-Persistence of already fetched data by using a framework like Room
-Application Icon
+- Persistence of already fetched data by using a framework like Room
+- Application Icon
 
 
