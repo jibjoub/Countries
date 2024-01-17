@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,7 +29,7 @@ fun DetailScreen(
 ) {
     val uiState: DataState<CountryUi> by detailViewModel.detailUiState.collectAsState()
     detailViewModel.getDetailById(id)
-    Surface(color = MaterialTheme.colorScheme.background) {
+    Surface {
         when (val state = uiState) {
             is DataState.Success -> CountryDetails(countryUi = state.data)
             is DataState.Loading ->

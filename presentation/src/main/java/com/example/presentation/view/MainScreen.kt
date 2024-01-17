@@ -35,7 +35,7 @@ fun MainScreen(
         navController.navigate(Screen.DetailScreen.route + "/" + countryUi.id)
     }
 
-    Surface(color = MaterialTheme.colorScheme.background) {
+    Surface {
         when (val state = uiState) {
             is DataState.Success -> CountryList(countries = state.data, onItemClick)
             is DataState.Loading ->
