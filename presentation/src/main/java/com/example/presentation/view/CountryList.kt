@@ -40,8 +40,8 @@ fun CountryItem(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
-                .clickable { onItemClick(country) },
+                .clickable { onItemClick(country) }
+                .padding(16.dp),
     ) {
         // Flag
         AsyncImageSvg(
