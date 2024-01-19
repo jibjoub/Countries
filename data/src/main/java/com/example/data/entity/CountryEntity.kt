@@ -15,8 +15,7 @@ data class CountryEntity(
 fun CountryEntity.mapToCountryModel(): CountryModel {
     return CountryModel(
         id = this.id,
-        commonName = this.name?.common,
-        officialName = this.name?.official,
+        name = this.name?.common,
         capitals = this.capitals,
         continents = this.continents,
         flagUrl = this.flags?.url,

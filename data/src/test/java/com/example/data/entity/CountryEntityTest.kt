@@ -18,7 +18,7 @@ class CountryEntityTest {
         val emptyCountryModel = emptyCountryEntity.mapToCountryModel()
 
         TestCase.assertEquals(emptyCountryModel.id, emptyCountryEntity.id)
-        TestCase.assertEquals(emptyCountryModel.commonName, emptyCountryEntity.name?.common)
+        TestCase.assertEquals(emptyCountryModel.name, emptyCountryEntity.name?.common)
         TestCase.assertEquals(emptyCountryModel.continents, emptyCountryEntity.continents)
         TestCase.assertEquals(emptyCountryModel.flagUrl, emptyCountryEntity.flags?.url)
         TestCase.assertEquals(
