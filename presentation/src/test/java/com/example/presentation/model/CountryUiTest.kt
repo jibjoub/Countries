@@ -25,7 +25,7 @@ class CountryUiTest {
     fun `Given a CountryModel with a list of 2 capitals, when mapping it to CountryUi, then the different capitals should be separated by a comma and a space`() {
         val multipleCapitalsCountryModel =
             countryModelBuilder(
-                commonName = "Chile",
+                name = "Chile",
                 capitals = listOf("Santiago", "Valparaiso"),
             )
         val countryUi = CountryUi.mapToCountryUi(multipleCapitalsCountryModel)
@@ -63,8 +63,7 @@ class CountryUiTest {
 
     private fun countryModelBuilder(
         id: String? = null,
-        commonName: String? = null,
-        officialName: String? = null,
+        name: String? = null,
         capitals: List<String>? = null,
         continents: List<String>? = null,
         flagUrl: String? = null,
@@ -72,8 +71,7 @@ class CountryUiTest {
         population: Int? = null,
     ) = CountryModel(
         id,
-        commonName,
-        officialName,
+        name,
         capitals,
         continents,
         flagUrl,
