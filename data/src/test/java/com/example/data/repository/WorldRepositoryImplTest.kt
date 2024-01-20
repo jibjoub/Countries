@@ -34,7 +34,18 @@ class WorldRepositoryImplTest {
 
             worldRepository.getWorldCountries().collect { dataState ->
                 assertTrue(dataState is DataState.Success)
-//                assertEquals(countriesResponse.size, (dataState as DataState.Success<List<CountryModel>>).data.size)
+            }
+        }
+    }
+
+    @Test
+    fun `Given a null body of the Retrofit Instance response, when we call getWorldCountries, then it should emit Error data state`() {
+        runBlocking {
+            val countriesResponse = listOf(countryEntityBuilder())
+            coEvery { countryApi.getWorldCountries() } returns Response.success(null)
+
+            worldRepository.getWorldCountries().collect { dataState ->
+                assert(dataState is DataState.Error)
             }
         }
     }
