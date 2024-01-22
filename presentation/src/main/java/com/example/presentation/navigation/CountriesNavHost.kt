@@ -24,7 +24,11 @@ fun CountriesNavHost(navController: NavHostController) {
             val countriesViewModel: CountriesViewModel = getViewModel()
             val uiState by countriesViewModel.uiState.observeAsState(initial = DataState.Loading)
 
-            CountriesScreen(navController, uiState)
+            val onItemClick: (CountryUi) -> Unit = {
+                navController.navigate(Screen.Details.route + "/" + it.id)
+            }
+
+            CountriesScreen(uiState, onItemClick)
         }
         composable(
             route = Screen.Details.route + "/{id}",

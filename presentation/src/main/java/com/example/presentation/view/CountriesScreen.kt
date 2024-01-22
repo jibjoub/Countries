@@ -16,23 +16,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
-import com.example.presentation.navigation.Screen
 
 @Composable
 fun CountriesScreen(
-    navController: NavController,
     uiState: DataState<List<CountryUi>>,
+    onItemClick: (CountryUi) -> Unit,
 ) {
-    val onItemClick = { countryUi: CountryUi ->
-        navController.navigate(Screen.Details.route + "/" + countryUi.id)
-    }
-
     Surface {
         when (val state = uiState) {
             is DataState.Success -> CountryList(countries = state.data, onItemClick)
