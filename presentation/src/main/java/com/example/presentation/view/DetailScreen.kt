@@ -26,7 +26,7 @@ fun DetailScreen(id: String) {
     val uiState: DataState<CountryUi> by detailViewModel(id).collectAsState()
     Surface {
         when (val state = uiState) {
-            is DataState.Success -> CountryDetails(countryUi = state.data)
+            is DataState.Success -> CountryDetail(countryUi = state.data)
             is DataState.Loading ->
                 Loading()
 
@@ -38,7 +38,7 @@ fun DetailScreen(id: String) {
 }
 
 @Composable
-fun CountryDetails(countryUi: CountryUi) {
+fun CountryDetail(countryUi: CountryUi) {
     Column(
         modifier =
             Modifier
