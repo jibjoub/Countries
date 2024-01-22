@@ -32,6 +32,7 @@ The app is fetching all the countries from the API and displays them in a list. 
 
 ## Future improvements
 - Refactor WorldRepositoryImpl
+- Rework Navigation
 - Persistence of already fetched data by using a framework like Room
 - Allow the user to choose from continents
 - Application Icon
