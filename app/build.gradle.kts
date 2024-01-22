@@ -2,7 +2,6 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jlleitschuh.gradle.ktlint") version "12.0.3"
-    id("kotlin-kapt")
 }
 
 android {
@@ -76,11 +75,6 @@ dependencies {
     implementation("io.insert-koin:koin-androidx-compose:3.4.1")
     // Navigation
     implementation("androidx.navigation:navigation-compose:$navVersion")
-    // Dagger - Hilt
-    implementation("com.google.dagger:hilt-android:2.48")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
-    implementation("androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03")
-    kapt("androidx.hilt:hilt-compiler:1.1.0")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
     implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
     implementation("androidx.compose.material:material:1.5.4")
@@ -88,6 +82,11 @@ dependencies {
     implementation(project(mapOf("path" to ":presentation")))
     implementation(project(mapOf("path" to ":common")))
     testImplementation("junit:junit:4.13.2")
+    testImplementation("org.mockito:mockito-core:5.3.0")
+    testImplementation("org.mockito:mockito-inline:5.3.0")
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))

@@ -56,7 +56,7 @@ fun CountryDetail(countryUi: CountryUi) {
 
         // Common Name
         Text(
-            text = countryUi.commonName,
+            text = countryUi.name,
             lineHeight = 30.sp,
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,

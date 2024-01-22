@@ -2,17 +2,17 @@ package com.example.data.repository
 
 import com.example.common.models.DataState
 import com.example.data.entity.mapToCountryModel
-import com.example.data.remote.api.RetrofitInstance
+import com.example.data.remote.api.CountryApi
 import com.example.domain.model.CountryModel
 import com.example.domain.repository.WorldRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : WorldRepository {
+class WorldRepositoryImpl(private val countryApi: CountryApi) : WorldRepository {
     override fun getWorldCountries(): Flow<DataState<List<CountryModel>>> =
         flow {
             try {
-                val response = retrofitInstance.apiService.getWorldCountries()
+                val response = countryApi.getWorldCountries()
                 when {
                     response.isSuccessful -> {
                         val body = response.body()
@@ -38,7 +38,7 @@ class WorldRepositoryImpl(private val retrofitInstance: RetrofitInstance) : Worl
     override fun getCountryById(countryId: String): Flow<DataState<CountryModel>> =
         flow {
             try {
-                val response = retrofitInstance.apiService.getCountryById(countryId)
+                val response = countryApi.getCountryById(countryId)
                 when {
                     response.isSuccessful -> {
                         val body = response.body()

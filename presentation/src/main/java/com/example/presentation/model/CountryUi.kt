@@ -6,8 +6,7 @@ import java.math.RoundingMode
 
 data class CountryUi(
     val id: String,
-    val commonName: String,
-    val officialName: String,
+    val name: String,
     val capitals: String,
     val continents: String,
     val flagUrl: String,
@@ -18,8 +17,7 @@ data class CountryUi(
         fun mapToCountryUi(countryModel: CountryModel) =
             CountryUi(
                 id = countryModel.id ?: "Not defined",
-                commonName = countryModel.commonName ?: "Not defined",
-                officialName = countryModel.officialName ?: "Not defined",
+                name = countryModel.name ?: "Not defined",
                 capitals = itemSeparator(countryModel.capitals),
                 continents = itemSeparator(countryModel.continents),
                 flagUrl = countryModel.flagUrl ?: "Not defined",

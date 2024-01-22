@@ -40,8 +40,8 @@ fun CountryItem(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .padding(16.dp)
-                .clickable { onItemClick(country) },
+                .clickable { onItemClick(country) }
+                .padding(16.dp),
     ) {
         // Flag
         AsyncImageSvg(
@@ -55,7 +55,7 @@ fun CountryItem(
 
         Column {
             // Name
-            Text(text = country.commonName, fontWeight = FontWeight.Bold, fontSize = 16.sp)
+            Text(text = country.name, fontWeight = FontWeight.Bold, fontSize = 16.sp)
             // Capitals
             Text(text = country.capitals, fontWeight = FontWeight.Medium, fontSize = 14.sp)
             // Continents
