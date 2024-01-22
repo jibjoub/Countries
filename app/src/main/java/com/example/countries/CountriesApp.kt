@@ -43,7 +43,7 @@ class CountriesApp : Application() {
                 }
 
                 single { MainViewModel(get()) }
-                factory { DetailViewModel(get()) }
+                factory { params -> DetailViewModel(getCountryById = get(), id = params.get()) }
             }
 
         startKoin {
