@@ -6,8 +6,8 @@ import com.example.data.repository.WorldRepositoryImpl
 import com.example.domain.repository.WorldRepository
 import com.example.domain.usecase.GetCountryByIdUseCase
 import com.example.domain.usecase.GetWorldCountriesUseCase
+import com.example.presentation.viewmodel.CountriesViewModel
 import com.example.presentation.viewmodel.DetailViewModel
-import com.example.presentation.viewmodel.MainViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.dsl.module
@@ -42,7 +42,7 @@ class CountriesApp : Application() {
                     GetCountryByIdUseCase(get())
                 }
 
-                single { MainViewModel(get()) }
+                single { CountriesViewModel(get()) }
                 factory { params -> DetailViewModel(getCountryById = get(), id = params.get()) }
             }
 

@@ -1,7 +1,7 @@
 package com.example.presentation.navigation
 
 sealed class Screen(val route: String) {
-    object MainScreen : Screen("main")
+    object CountriesScreen : Screen("countries")
 
     object DetailScreen : Screen("detail")
 }

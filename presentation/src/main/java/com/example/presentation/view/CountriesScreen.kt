@@ -25,7 +25,7 @@ import com.example.presentation.model.CountryUi
 import com.example.presentation.navigation.Screen
 
 @Composable
-fun MainScreen(
+fun CountriesScreen(
     navController: NavController,
     uiState: DataState<List<CountryUi>>,
 ) {
