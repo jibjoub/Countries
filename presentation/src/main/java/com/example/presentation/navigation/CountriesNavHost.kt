@@ -13,28 +13,28 @@ import com.example.presentation.model.CountryUi
 import com.example.presentation.view.CountriesScreen
 import com.example.presentation.view.DetailScreen
 import com.example.presentation.viewmodel.CountriesViewModel
-import com.example.presentation.viewmodel.DetailViewModel
+import com.example.presentation.viewmodel.DetailsViewModel
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
 
 @Composable
 fun CountriesNavHost(navController: NavHostController) {
-    NavHost(navController = navController, startDestination = Screen.CountriesScreen.route) {
-        composable(route = Screen.CountriesScreen.route) {
+    NavHost(navController = navController, startDestination = Screen.Countries.route) {
+        composable(route = Screen.Countries.route) {
             val countriesViewModel: CountriesViewModel = getViewModel()
             val uiState by countriesViewModel.uiState.observeAsState(initial = DataState.Loading)
 
             CountriesScreen(navController, uiState)
         }
         composable(
-            route = Screen.DetailScreen.route + "/{id}",
+            route = Screen.Details.route + "/{id}",
             arguments = listOf(navArgument("id") {}),
         ) { backStackEntry ->
             val arg = backStackEntry.arguments?.getString("id")
 
             arg?.let {
-                val detailViewModel: DetailViewModel = getViewModel { parametersOf(arg) }
-                val uiState: DataState<CountryUi> by detailViewModel.uiState.collectAsState()
+                val detailsViewModel: DetailsViewModel = getViewModel { parametersOf(arg) }
+                val uiState: DataState<CountryUi> by detailsViewModel.uiState.collectAsState()
 
                 DetailScreen(uiState)
             }

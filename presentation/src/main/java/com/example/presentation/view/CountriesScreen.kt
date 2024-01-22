@@ -30,7 +30,7 @@ fun CountriesScreen(
     uiState: DataState<List<CountryUi>>,
 ) {
     val onItemClick = { countryUi: CountryUi ->
-        navController.navigate(Screen.DetailScreen.route + "/" + countryUi.id)
+        navController.navigate(Screen.Details.route + "/" + countryUi.id)
     }
 
     Surface {

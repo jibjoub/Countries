@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class DetailViewModel(val getCountryById: GetCountryByIdUseCase, val id: String) :
+class DetailsViewModel(val getCountryById: GetCountryByIdUseCase, val id: String) :
     ViewModel() {
     val uiState: StateFlow<DataState<CountryUi>> =
         getCountryById(id).map { state ->
