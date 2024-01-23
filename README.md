@@ -30,10 +30,16 @@ The app is fetching all the countries from the API and displays them in a list. 
   <video src="https://private-user-images.githubusercontent.com/46657670/297451389-64d17928-ac5d-4a93-9d3e-6fc4c2cafd29.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDU1MDk4ODgsIm5iZiI6MTcwNTUwOTU4OCwicGF0aCI6Ii80NjY1NzY3MC8yOTc0NTEzODktNjRkMTc5MjgtYWM1ZC00YTkzLTlkM2UtNmZjNGMyY2FmZDI5Lm1wND9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAxMTclMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMTE3VDE2Mzk0OFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTIyNDY4NWVhNGNkZDQ5YjZmNGJkMGFmY2VkN2YxMjZkZjUwMjhiMzM0MjllMjUxZWVjYmI3ZTcxYzY0YzM2MGImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.puO52P03FtbAkVBsh4XgExi_h1nLIRVx9w5sAOKf5N0" width="400" />
 </div>
 
+## Set up the project
+- Use Android Studio Hedgehog or above
+- Download Java SDK 21 or above
+- Set your environment variable JAVA_HOME to the location of the JDK on your machine https://docs.oracle.com/cd/E19182-01/821-0917/inst_jdk_javahome_t/index.html 
+- Clone the repository in Android Studio
+
 ## Future improvements
 - Refactor WorldRepositoryImpl
-- Rework Navigation
 - Persistence of already fetched data by using a framework like Room
+- Migrate from Koin to Hilt for Dependency Injection
 - Allow the user to choose from continents
 - Application Icon
 
