@@ -15,7 +15,6 @@ import com.example.presentation.view.DetailScreen
 import com.example.presentation.viewmodel.CountriesViewModel
 import com.example.presentation.viewmodel.DetailsViewModel
 import org.koin.androidx.compose.getViewModel
-import org.koin.core.parameter.parametersOf
 
 @Composable
 fun CountriesNavHost(navController: NavHostController) {
@@ -31,17 +30,13 @@ fun CountriesNavHost(navController: NavHostController) {
             CountriesScreen(uiState, onItemClick)
         }
         composable(
-            route = Screen.Details.route + "/{id}",
-            arguments = listOf(navArgument("id") {}),
-        ) { backStackEntry ->
-            val arg = backStackEntry.arguments?.getString("id")
+            route = Screen.Details.route + "/{countryId}",
+            arguments = listOf(navArgument("countryId") {}),
+        ) {
+            val detailsViewModel: DetailsViewModel = getViewModel()
+            val uiState: DataState<CountryUi> by detailsViewModel.uiState.collectAsState()
 
-            arg?.let {
-                val detailsViewModel: DetailsViewModel = getViewModel { parametersOf(arg) }
-                val uiState: DataState<CountryUi> by detailsViewModel.uiState.collectAsState()
-
-                DetailScreen(uiState)
-            }
+            DetailScreen(uiState)
         }
     }
 }

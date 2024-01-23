@@ -9,6 +9,7 @@ import com.example.domain.usecase.GetWorldCountriesUseCase
 import com.example.presentation.viewmodel.CountriesViewModel
 import com.example.presentation.viewmodel.DetailsViewModel
 import org.koin.android.ext.koin.androidContext
+import org.koin.androidx.viewmodel.dsl.viewModelOf
 import org.koin.core.context.GlobalContext.startKoin
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -35,17 +36,15 @@ class CountriesApp : Application() {
                     WorldRepositoryImpl(get())
                 }
 
-                single {
+                factory {
                     GetWorldCountriesUseCase(get())
                 }
-                single {
+                factory {
                     GetCountryByIdUseCase(get())
                 }
 
-                single { CountriesViewModel(get()) }
-                // As the id to retrieve the data is given when the ViewModel is created, we
-                // need params
-                factory { params -> DetailsViewModel(getCountryById = get(), id = params.get()) }
+                viewModelOf(::CountriesViewModel)
+                viewModelOf(::DetailsViewModel)
             }
 
         startKoin {

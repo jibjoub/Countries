@@ -1,5 +1,6 @@
 package com.example.presentation.viewmodel
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.common.models.DataState
@@ -11,8 +12,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
-class DetailsViewModel(val getCountryById: GetCountryByIdUseCase, val id: String) :
+class DetailsViewModel(
+    getCountryById: GetCountryByIdUseCase,
+    savedStateHandle: SavedStateHandle,
+) :
     ViewModel() {
+    private val id: String = checkNotNull(savedStateHandle["countryId"])
     val uiState: StateFlow<DataState<CountryUi>> =
         getCountryById(id).map { state ->
             state.mapData { countryModel -> CountryUi.mapToCountryUi(countryModel) }
