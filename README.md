@@ -33,7 +33,7 @@ The app is fetching all the countries from the API and displays them in a list. 
 ## Set up the project
 - Use Android Studio Hedgehog or above
 - Download Java SDK 21 or above
-- Set your environment variable JAVA_HOME to the location of the JDK on your machine https://docs.oracle.com/cd/E19182-01/821-0917/inst_jdk_javahome_t/index.html 
+- Set your environment variable JAVA_HOME to the location of the JDK on your machine, more detail of the process here: https://docs.oracle.com/cd/E19182-01/821-0917/inst_jdk_javahome_t/index.html 
 - Clone the repository in Android Studio
 
 ## Future improvements
