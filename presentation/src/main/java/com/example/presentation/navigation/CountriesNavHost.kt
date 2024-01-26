@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -14,13 +15,12 @@ import com.example.presentation.view.CountriesScreen
 import com.example.presentation.view.DetailScreen
 import com.example.presentation.viewmodel.CountriesViewModel
 import com.example.presentation.viewmodel.DetailsViewModel
-import org.koin.androidx.compose.getViewModel
 
 @Composable
 fun CountriesNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screen.Countries.route) {
         composable(route = Screen.Countries.route) {
-            val countriesViewModel: CountriesViewModel = getViewModel()
+            val countriesViewModel: CountriesViewModel = hiltViewModel()
             val uiState by countriesViewModel.uiState.observeAsState(initial = DataState.Loading)
 
             val onItemClick: (CountryUi) -> Unit = {
@@ -33,7 +33,7 @@ fun CountriesNavHost(navController: NavHostController) {
             route = Screen.Details.route + "/{countryId}",
             arguments = listOf(navArgument("countryId") {}),
         ) {
-            val detailsViewModel: DetailsViewModel = getViewModel()
+            val detailsViewModel: DetailsViewModel = hiltViewModel()
             val uiState: DataState<CountryUi> by detailsViewModel.uiState.collectAsState()
 
             DetailScreen(uiState)
