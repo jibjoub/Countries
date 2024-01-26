@@ -11,11 +11,8 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.mockito.junit.MockitoJUnitRunner
 import retrofit2.Response
 
-@RunWith(MockitoJUnitRunner::class)
 class WorldRepositoryImplTest {
     private lateinit var countryApi: CountryApi
     private lateinit var worldRepository: WorldRepositoryImpl

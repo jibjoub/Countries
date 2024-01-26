@@ -82,8 +82,6 @@ dependencies {
     implementation(project(mapOf("path" to ":presentation")))
     implementation(project(mapOf("path" to ":common")))
     testImplementation("junit:junit:4.13.2")
-    testImplementation("org.mockito:mockito-core:5.3.0")
-    testImplementation("org.mockito:mockito-inline:5.3.0")
     // Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
