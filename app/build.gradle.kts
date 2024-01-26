@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jlleitschuh.gradle.ktlint") version "12.0.3"
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -58,6 +60,7 @@ ktlint {
 dependencies {
     val navVersion = "2.7.6"
     val koinVersion = "3.4.1"
+    val hiltVersion = "2.46.1"
 
     implementation(project(":data"))
 
@@ -74,6 +77,9 @@ dependencies {
     implementation("io.insert-koin:koin-core:$koinVersion")
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
+    // Hilt
+    implementation("com.google.dagger:hilt-android:$hiltVersion")
+    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
     // Navigation
     implementation("androidx.navigation:navigation-compose:$navVersion")
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
