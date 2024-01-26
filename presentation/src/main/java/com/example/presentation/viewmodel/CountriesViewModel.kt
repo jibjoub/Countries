@@ -9,7 +9,7 @@ import com.example.domain.usecase.GetWorldCountriesUseCase
 import com.example.presentation.model.CountryUi
 import kotlinx.coroutines.flow.map
 
-class MainViewModel(getWorldCountries: GetWorldCountriesUseCase) :
+class CountriesViewModel(getWorldCountries: GetWorldCountriesUseCase) :
     ViewModel() {
     // I initially used a Flow here. But it updated the state every time the MainScreen
     // became visible again after being invisible for more than X seconds. It was problematic when

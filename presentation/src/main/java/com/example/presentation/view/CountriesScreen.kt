@@ -11,32 +11,22 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import coil.compose.AsyncImage
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
-import com.example.presentation.navigation.Screen
-import com.example.presentation.viewmodel.MainViewModel
-import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun MainScreen(navController: NavController) {
-    val mainViewModel: MainViewModel = getViewModel()
-    val uiState by mainViewModel.uiState.observeAsState(initial = DataState.Loading)
-
-    val onItemClick = { countryUi: CountryUi ->
-        navController.navigate(Screen.DetailScreen.route + "/" + countryUi.id)
-    }
-
+fun CountriesScreen(
+    uiState: DataState<List<CountryUi>>,
+    onItemClick: (CountryUi) -> Unit,
+) {
     Surface {
         when (val state = uiState) {
             is DataState.Success -> CountryList(countries = state.data, onItemClick)

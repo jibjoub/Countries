@@ -7,8 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -17,16 +15,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
-import com.example.presentation.viewmodel.DetailViewModel
-import org.koin.androidx.compose.getViewModel
 
 @Composable
-fun DetailScreen(id: String) {
-    val detailViewModel: DetailViewModel = getViewModel()
-    val uiState: DataState<CountryUi> by detailViewModel(id).collectAsState()
+fun DetailScreen(uiState: DataState<CountryUi>) {
     Surface {
-        when (val state = uiState) {
-            is DataState.Success -> CountryDetails(countryUi = state.data)
+        when (uiState) {
+            is DataState.Success -> CountryDetail(countryUi = uiState.data)
             is DataState.Loading ->
                 Loading()
 
@@ -38,7 +32,7 @@ fun DetailScreen(id: String) {
 }
 
 @Composable
-fun CountryDetails(countryUi: CountryUi) {
+fun CountryDetail(countryUi: CountryUi) {
     Column(
         modifier =
             Modifier
