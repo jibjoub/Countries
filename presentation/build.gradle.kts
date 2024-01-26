@@ -42,7 +42,6 @@ android {
 }
 
 dependencies {
-    val koinVersion = "3.4.0"
     val hiltVersion = "2.46.1"
     // Live Data (Duplicate with the app build.gradle)
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
@@ -58,10 +57,6 @@ dependencies {
     // Async images
     implementation("io.coil-kt:coil-compose:2.0.0")
     implementation("io.coil-kt:coil-svg:2.0.0")
-    // Koin
-    implementation("io.insert-koin:koin-core:$koinVersion")
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     // Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")

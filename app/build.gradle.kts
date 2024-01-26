@@ -59,7 +59,6 @@ ktlint {
 
 dependencies {
     val navVersion = "2.7.6"
-    val koinVersion = "3.4.1"
     val hiltVersion = "2.46.1"
 
     implementation(project(":data"))
@@ -73,10 +72,6 @@ dependencies {
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
-    // Koin
-    implementation("io.insert-koin:koin-core:$koinVersion")
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     // Hilt
     implementation("com.google.dagger:hilt-android:$hiltVersion")
     kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
