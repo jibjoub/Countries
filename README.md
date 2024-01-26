@@ -13,7 +13,7 @@ Countries is a project to practice CLEAN Android development with focus on the b
 - Kotlin
   - Coroutines
   - Flow + Livedata
-- Koin for Dependency Injection
+- Hilt for Dependency Injection
 - Jetpack Compose for UI building
 - Architecture
   - CLEAN architecture
@@ -39,7 +39,6 @@ The app is fetching all the countries from the API and displays them in a list. 
 ## Future improvements
 - Refactor WorldRepositoryImpl
 - Persistence of already fetched data by using a framework like Room
-- Migrate from Koin to Hilt for Dependency Injection
 - Allow the user to choose from continents
 - Application Icon
 
