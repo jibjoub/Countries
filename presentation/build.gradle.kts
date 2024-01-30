@@ -42,11 +42,17 @@ android {
 }
 
 dependencies {
+    val lifecycleVersion = "2.6.2"
+    val livedataVersion = "1.5.4"
+    val coilVersion = "2.0.0"
+
+    implementation(project(mapOf("path" to ":domain")))
+    implementation(project(mapOf("path" to ":common")))
+
     implementation(libs.androidx.ktx)
-    // Live Data (Duplicate with the app build.gradle)
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
-    implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
+    implementation("androidx.compose.runtime:runtime-livedata:$livedataVersion")
     // Compose
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
     implementation(libs.activity.compose)
@@ -55,17 +61,15 @@ dependencies {
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
     // Async images
-    implementation("io.coil-kt:coil-compose:2.0.0")
-    implementation("io.coil-kt:coil-svg:2.0.0")
+    implementation("io.coil-kt:coil-compose:$coilVersion")
+    implementation("io.coil-kt:coil-svg:$coilVersion")
     // Hilt
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.androidx.ktx)
+    implementation(libs.androidx.appcompat)
     implementation("com.google.android.material:material:1.11.0")
-    implementation(project(mapOf("path" to ":domain")))
-    implementation(project(mapOf("path" to ":common")))
     implementation("androidx.navigation:navigation-compose:2.7.6")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

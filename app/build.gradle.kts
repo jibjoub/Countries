@@ -58,13 +58,13 @@ ktlint {
 }
 
 dependencies {
-    val navVersion = "2.7.6"
-
+    // Why is it different than the others?
     implementation(project(":data"))
+    implementation(project(mapOf("path" to ":domain")))
+    implementation(project(mapOf("path" to ":presentation")))
+    implementation(project(mapOf("path" to ":common")))
 
     implementation(libs.androidx.ktx)
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
     implementation(libs.activity.compose)
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.ui.graphics)
@@ -74,17 +74,14 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     // Navigation
-    implementation("androidx.navigation:navigation-compose:$navVersion")
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0")
-    implementation("com.google.accompanist:accompanist-swiperefresh:0.28.0")
-    implementation("androidx.compose.material:material:1.5.4")
-    implementation(project(mapOf("path" to ":domain")))
-    implementation(project(mapOf("path" to ":presentation")))
-    implementation(project(mapOf("path" to ":common")))
-    testImplementation("junit:junit:4.13.2")
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.compose.material3)
+
     // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation(libs.retrofit2.retrofit)
+    implementation(libs.retrofit2.converter.gson)
+    // Test
+    testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
