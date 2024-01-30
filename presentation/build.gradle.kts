@@ -48,12 +48,12 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata:1.5.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     // Compose
-    implementation("androidx.activity:activity-compose:1.8.2")
     implementation(platform("androidx.compose:compose-bom:2023.03.00"))
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.compose.material3:material3")
+    implementation(libs.activity.compose)
+    implementation(libs.compose.ui.ui)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.material3)
     // Async images
     implementation("io.coil-kt:coil-compose:2.0.0")
     implementation("io.coil-kt:coil-svg:2.0.0")
