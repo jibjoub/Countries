@@ -36,8 +36,8 @@ android {
 }
 
 dependencies {
-    val hiltVersion = "2.46.1"
-    implementation("androidx.core:core-ktx:1.9.0")
+
+    implementation(libs.androidx.ktx)
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     // Retrofit
@@ -46,8 +46,8 @@ dependencies {
     implementation(project(mapOf("path" to ":domain")))
     implementation(project(mapOf("path" to ":common")))
     // Hilt
-    implementation("com.google.dagger:hilt-android:$hiltVersion")
-    kapt("com.google.dagger:hilt-android-compiler:$hiltVersion")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
     // Test
     testImplementation("junit:junit:4.13.2")
     testImplementation("io.mockk:mockk:1.13.7")
