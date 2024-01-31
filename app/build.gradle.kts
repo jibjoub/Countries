@@ -58,13 +58,13 @@ ktlint {
 }
 
 dependencies {
-    // Why is it different than the others?
     implementation(project(":data"))
-    implementation(project(mapOf("path" to ":domain")))
-    implementation(project(mapOf("path" to ":presentation")))
-    implementation(project(mapOf("path" to ":common")))
+    implementation(project(":domain"))
+    implementation(project(":presentation"))
+    implementation(project(":common"))
 
     implementation(libs.androidx.ktx)
+    // Compose
     implementation(libs.activity.compose)
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.ui.graphics)
@@ -76,15 +76,9 @@ dependencies {
     // Navigation
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.compose.material3)
-
     // Retrofit
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.converter.gson)
     // Test
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    testImplementation(libs.junit)
 }

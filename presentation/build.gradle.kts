@@ -45,16 +45,18 @@ dependencies {
     val lifecycleVersion = "2.6.2"
     val livedataVersion = "1.5.4"
     val coilVersion = "2.0.0"
+    val composeBomVersion = "2023.03.00"
 
-    implementation(project(mapOf("path" to ":domain")))
-    implementation(project(mapOf("path" to ":common")))
+    implementation(project(":domain"))
+    implementation(project(":common"))
 
     implementation(libs.androidx.ktx)
+    implementation(libs.androidx.appcompat)
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
     implementation("androidx.compose.runtime:runtime-livedata:$livedataVersion")
     // Compose
-    implementation(platform("androidx.compose:compose-bom:2023.03.00"))
+    implementation(platform("androidx.compose:compose-bom:$composeBomVersion"))
     implementation(libs.activity.compose)
     implementation(libs.compose.ui.ui)
     implementation(libs.compose.ui.graphics)
@@ -67,11 +69,6 @@ dependencies {
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
-    implementation(libs.androidx.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation("com.google.android.material:material:1.11.0")
-    implementation("androidx.navigation:navigation-compose:2.7.6")
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+    // Test
+    testImplementation(libs.junit)
 }
