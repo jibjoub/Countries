@@ -1,7 +1,7 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-    id("org.jlleitschuh.gradle.ktlint") version "12.0.3"
+    alias(libs.plugins.ktlint)
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
 }

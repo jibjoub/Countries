@@ -6,6 +6,7 @@ hilt = "2.46.1"
 compose = "1.8.2"
 retrofit = "2.9.0"
 junit = "4.13.2"
+ktlint = "12.0.3"
 
 [libraries]
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
@@ -27,3 +28,4 @@ retrofit2-converter-gson = { group = "com.squareup.retrofit2", name = "converter
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 
 [plugins]
+ktlint = { id = "org.jlleitschuh.gradle.ktlint", version.ref = "ktlint"}
