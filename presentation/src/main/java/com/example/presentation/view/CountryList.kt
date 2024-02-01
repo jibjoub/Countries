@@ -22,7 +22,7 @@ import com.example.presentation.model.CountryUi
 @Composable
 fun CountryList(
     countries: List<CountryUi>,
-    onItemClick: (CountryUi) -> Unit,
+    onItemClick: (String) -> Unit,
 ) {
     LazyColumn {
         items(countries) { country ->
@@ -34,13 +34,13 @@ fun CountryList(
 @Composable
 fun CountryItem(
     country: CountryUi,
-    onItemClick: (CountryUi) -> Unit,
+    onItemClick: (String) -> Unit,
 ) {
     Row(
         modifier =
             Modifier
                 .fillMaxWidth()
-                .clickable { onItemClick(country) }
+                .clickable { onItemClick(country.id) }
                 .padding(16.dp),
     ) {
         // Flag

@@ -25,11 +25,11 @@ import com.example.presentation.model.CountryUi
 @Composable
 fun CountriesScreen(
     uiState: DataState<List<CountryUi>>,
-    onItemClick: (CountryUi) -> Unit,
+    onItemClick: (String) -> Unit,
 ) {
     Surface {
-        when (val state = uiState) {
-            is DataState.Success -> CountryList(countries = state.data, onItemClick)
+        when (uiState) {
+            is DataState.Success -> CountryList(countries = uiState.data, onItemClick)
             is DataState.Loading ->
                 Loading()
 

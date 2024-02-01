@@ -24,8 +24,8 @@ fun CountriesNavHost(navController: NavHostController) {
             val countriesViewModel: CountriesViewModel = hiltViewModel()
             val uiState by countriesViewModel.uiState.observeAsState(initial = DataState.Loading)
 
-            val onItemClick: (CountryUi) -> Unit = {
-                navController.navigate(Screen.Details.route + "/" + it.id)
+            val onItemClick: (String) -> Unit = {
+                navController.navigate(Screen.Details.route + "/" + it)
             }
 
             CountriesScreen(uiState, onItemClick)
