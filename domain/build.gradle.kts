@@ -39,7 +39,7 @@ dependencies {
     implementation(project(mapOf("path" to ":common")))
     implementation(libs.androidx.ktx)
     implementation(libs.androidx.appcompat)
-    // Hilt
+    // DI
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     // Test

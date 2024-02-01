@@ -70,7 +70,7 @@ dependencies {
     implementation(libs.compose.ui.graphics)
     implementation(libs.compose.ui.tooling.preview)
     implementation(libs.compose.material3)
-    // Hilt
+    // DI
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     // Navigation

@@ -46,7 +46,7 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.converter.gson)
-    // Hilt
+    // DI
     implementation(libs.hilt.android)
     kapt(libs.hilt.android.compiler)
     // Test
