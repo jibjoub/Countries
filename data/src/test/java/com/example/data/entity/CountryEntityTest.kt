@@ -1,12 +1,13 @@
 package com.example.data.entity
 
+import com.example.domain.model.CountryModel
 import junit.framework.TestCase
 import org.junit.Test
 
 class CountryEntityTest {
     @Test
     fun `Given a CountryEntity, when mapping to CountryModel, the fields should be correctly mapped`() {
-        val emptyCountryEntity =
+        val countryEntity =
             CountryEntity(
                 "EST",
                 NameEntity("Estonia", "Republic of Estonia"),
@@ -15,16 +16,19 @@ class CountryEntityTest {
                 FlagEntity("test", "test"),
                 1_331_057,
             )
-        val emptyCountryModel = emptyCountryEntity.mapToCountryModel()
 
-        TestCase.assertEquals(emptyCountryModel.id, emptyCountryEntity.id)
-        TestCase.assertEquals(emptyCountryModel.name, emptyCountryEntity.name?.common)
-        TestCase.assertEquals(emptyCountryModel.continents, emptyCountryEntity.continents)
-        TestCase.assertEquals(emptyCountryModel.flagUrl, emptyCountryEntity.flags?.url)
-        TestCase.assertEquals(
-            emptyCountryModel.flagDescription,
-            emptyCountryEntity.flags?.description,
-        )
-        TestCase.assertEquals(emptyCountryModel.population, emptyCountryEntity.population)
+        val countryModelExpected =
+            CountryModel(
+                countryEntity.id,
+                countryEntity.name?.common,
+                countryEntity.capitals,
+                countryEntity.continents,
+                countryEntity.flags?.url,
+                countryEntity.flags?.description,
+                countryEntity.population,
+            )
+        val countryModel = countryEntity.mapToCountryModel()
+
+        TestCase.assertEquals(countryModelExpected, countryModel)
     }
 }
