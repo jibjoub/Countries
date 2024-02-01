@@ -43,7 +43,6 @@ android {
 
 dependencies {
     val lifecycleVersion = "2.6.2"
-    val livedataVersion = "1.5.4"
     val coilVersion = "2.0.0"
     val composeBomVersion = "2023.03.00"
 
@@ -52,9 +51,8 @@ dependencies {
 
     implementation(libs.androidx.ktx)
     implementation(libs.androidx.appcompat)
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion")
-    implementation("androidx.compose.runtime:runtime-livedata:$livedataVersion")
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.runtime)
     // Compose
     implementation(platform("androidx.compose:compose-bom:$composeBomVersion"))
     implementation(libs.activity.compose)

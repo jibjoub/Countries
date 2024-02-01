@@ -58,12 +58,17 @@ ktlint {
 }
 
 dependencies {
+    val livedataVersion = "1.5.4"
+
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":presentation"))
     implementation(project(":common"))
 
     implementation(libs.androidx.ktx)
+    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.androidx.lifecycle.runtime)
+    implementation("androidx.compose.runtime:runtime-livedata:$livedataVersion")
     // Compose
     implementation(libs.activity.compose)
     implementation(libs.compose.ui.ui)

@@ -1,4 +1,4 @@
-package com.example.presentation.navigation
+package com.example.countries.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -11,6 +11,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.example.common.models.DataState
 import com.example.presentation.model.CountryUi
+import com.example.presentation.navigation.Screen
 import com.example.presentation.view.CountriesScreen
 import com.example.presentation.view.DetailScreen
 import com.example.presentation.viewmodel.CountriesViewModel
