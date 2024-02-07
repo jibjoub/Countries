@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -46,9 +46,13 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.converter.gson)
+    // Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
     // DI
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     // Test
     testImplementation(libs.junit)
     testImplementation("io.mockk:mockk:$mockkVersion")

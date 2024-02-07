@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.ktlint)
     alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.jetbrains.kotlin.kapt)
+    alias(libs.plugins.google.devtools.ksp)
 }
 
 android {
@@ -65,7 +65,7 @@ dependencies {
     implementation("io.coil-kt:coil-svg:$coilVersion")
     // DI
     implementation(libs.hilt.android)
-    kapt(libs.hilt.android.compiler)
+    ksp(libs.hilt.android.compiler)
     implementation(libs.androidx.hilt.navigation.compose)
     // Test
     testImplementation(libs.junit)
