@@ -1,5 +1,9 @@
 package com.example.data.entity
 
+import com.example.data.remote.entity.CountryEntity
+import com.example.data.remote.entity.FlagEntity
+import com.example.data.remote.entity.NameEntity
+import com.example.data.remote.entity.mapToCountryModel
 import com.example.domain.model.CountryModel
 import junit.framework.TestCase
 import org.junit.Test

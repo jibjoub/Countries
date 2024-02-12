@@ -1,4 +1,4 @@
-package com.example.data.entity
+package com.example.data.remote.entity
 
 import com.example.domain.model.CountryModel
 import com.google.gson.annotations.SerializedName

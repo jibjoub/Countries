@@ -12,4 +12,6 @@ class GetCountryByIdUseCase
         operator fun invoke(id: String): Flow<DataState<CountryModel>> {
             return countriesRepository.getCountryById(id)
         }
+
+//    suspend fun insertCountry()
     }

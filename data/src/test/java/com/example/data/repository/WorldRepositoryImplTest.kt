@@ -1,10 +1,10 @@
 package com.example.data.repository
 
 import com.example.common.models.DataState
-import com.example.data.entity.CountryEntity
-import com.example.data.entity.FlagEntity
-import com.example.data.entity.NameEntity
 import com.example.data.remote.api.CountryApi
+import com.example.data.remote.entity.CountryEntity
+import com.example.data.remote.entity.FlagEntity
+import com.example.data.remote.entity.NameEntity
 import io.mockk.coEvery
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking

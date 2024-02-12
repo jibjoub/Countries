@@ -84,6 +84,8 @@ dependencies {
     // Retrofit
     implementation(libs.retrofit2.retrofit)
     implementation(libs.retrofit2.converter.gson)
+    // DB
+    implementation(libs.androidx.room.runtime)
     // Test
     testImplementation(libs.junit)
 }
