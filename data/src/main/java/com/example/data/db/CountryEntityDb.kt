@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 data class CountryEntityDb(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String?,
-    val capitals: String?,
     val continents: String?,
     @ColumnInfo(name = "flag_url") val flagUrl: String?,
     @ColumnInfo(name = "flag_description") val flagDescription: String?,

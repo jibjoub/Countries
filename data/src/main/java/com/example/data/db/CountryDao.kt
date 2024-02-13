@@ -11,6 +11,9 @@ interface CountryDao {
     @Insert(onConflict = REPLACE)
     suspend fun insertCountry(country: CountryEntityDb)
 
+    @Insert(onConflict = REPLACE)
+    suspend fun insertCapital(capital: CapitalEntityDb)
+
     @Query("DELETE FROM countries")
     suspend fun deleteAll()
 

@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 import com.example.common.models.DataState
+import com.example.data.db.CapitalEntityDb
 import com.example.data.db.CountryDao
 import com.example.data.db.CountryEntityDb
 import com.example.data.remote.api.CountryApi
@@ -43,12 +44,16 @@ class WorldRepositoryImpl
                     else -> {
                         insertCountry(
                             countryResponse.name!!.common,
-                            countryResponse.capitals.toString(),
                             countryResponse.continents.toString(),
                             countryResponse.flags?.url,
                             countryResponse.flags?.description,
                             countryResponse.population.toString(),
                         )
+                        countryResponse.capitals?.let {
+                            for (i in countryResponse.capitals) {
+                                insertCapital(i, countryResponse.name.common)
+                            }
+                        }
                         DataState.Success(countryResponse.mapToCountryModel())
                     }
                 }
@@ -58,7 +63,6 @@ class WorldRepositoryImpl
 
         override suspend fun insertCountry(
             name: String?,
-            capitals: String?,
             continents: String?,
             flagUrl: String?,
             flagDescription: String?,
@@ -67,13 +71,19 @@ class WorldRepositoryImpl
             countryDao.insertCountry(
                 CountryEntityDb(
                     name = name,
-                    capitals = capitals,
                     continents = continents,
                     flagUrl = flagUrl,
                     flagDescription = flagDescription,
                     population = population,
                 ),
             )
+        }
+
+        override suspend fun insertCapital(
+            name: String?,
+            countryName: String?,
+        ) {
+            countryDao.insertCapital(CapitalEntityDb(name = name!!, countryName = countryName!!))
         }
 
         override suspend fun deleteAll() {

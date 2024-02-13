@@ -11,11 +11,15 @@ interface WorldRepository {
 
     suspend fun insertCountry(
         name: String?,
-        capitals: String?,
         continents: String?,
         flagUrl: String?,
         flagDescription: String?,
         population: String?,
+    )
+
+    suspend fun insertCapital(
+        name: String?,
+        countryName: String?,
     )
 
     suspend fun deleteAll()
