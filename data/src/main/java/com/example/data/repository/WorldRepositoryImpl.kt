@@ -37,18 +37,20 @@ class WorldRepositoryImpl
                 if (response.isSuccessful.not()) {
                     return@map DataState.Error(Exception("Response is not successful. Code: ${response.code()}"))
                 }
-                insertCountry(
-                    "test",
-                    "test",
-                    "test",
-                    "test",
-                    "test",
-                    "test",
-                )
 
                 when (val countryResponse = response.body()?.firstOrNull()) {
                     null -> DataState.Error(Exception("Response body is null"))
-                    else -> DataState.Success(countryResponse.mapToCountryModel())
+                    else -> {
+                        insertCountry(
+                            countryResponse.name!!.common,
+                            countryResponse.capitals.toString(),
+                            countryResponse.continents.toString(),
+                            countryResponse.flags?.url,
+                            countryResponse.flags?.description,
+                            countryResponse.population.toString(),
+                        )
+                        DataState.Success(countryResponse.mapToCountryModel())
+                    }
                 }
             }.catch {
                 emit(DataState.Error(Exception(it)))
