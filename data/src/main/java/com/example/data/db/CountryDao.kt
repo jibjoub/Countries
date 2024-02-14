@@ -14,6 +14,12 @@ interface CountryDao {
     @Insert(onConflict = REPLACE)
     suspend fun insertCapital(capital: CapitalEntityDb)
 
+    @Insert(onConflict = REPLACE)
+    suspend fun insertContinent(continent: ContinentEntityDb)
+
+    @Insert(onConflict = REPLACE)
+    suspend fun insertCountryContinentCrossRef(countryContinentCrossRef: CountryContinentCrossRef)
+
     @Query("DELETE FROM countries")
     suspend fun deleteAll()
 

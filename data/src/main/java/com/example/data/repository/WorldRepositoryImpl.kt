@@ -2,6 +2,8 @@ package com.example.data.repository
 
 import com.example.common.models.DataState
 import com.example.data.db.CapitalEntityDb
+import com.example.data.db.ContinentEntityDb
+import com.example.data.db.CountryContinentCrossRef
 import com.example.data.db.CountryDao
 import com.example.data.db.CountryEntityDb
 import com.example.data.remote.api.CountryApi
@@ -54,6 +56,12 @@ class WorldRepositoryImpl
                                 insertCapital(i, countryResponse.name.common)
                             }
                         }
+                        countryResponse.continents?.let {
+                            for (i in countryResponse.continents) {
+                                insertContinent(i)
+                                insertCountryContinentCrossRef(countryResponse.name.common!!, i)
+                            }
+                        }
                         DataState.Success(countryResponse.mapToCountryModel())
                     }
                 }
@@ -84,6 +92,17 @@ class WorldRepositoryImpl
             countryName: String?,
         ) {
             countryDao.insertCapital(CapitalEntityDb(name = name!!, countryName = countryName!!))
+        }
+
+        override suspend fun insertContinent(name: String?) {
+            countryDao.insertContinent(ContinentEntityDb(name!!))
+        }
+
+        override suspend fun insertCountryContinentCrossRef(
+            countryName: String,
+            continentName: String,
+        ) {
+            countryDao.insertCountryContinentCrossRef(CountryContinentCrossRef(countryName, continentName))
         }
 
         override suspend fun deleteAll() {

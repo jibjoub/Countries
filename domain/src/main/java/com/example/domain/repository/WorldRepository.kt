@@ -22,5 +22,12 @@ interface WorldRepository {
         countryName: String?,
     )
 
+    suspend fun insertContinent(name: String?)
+
+    suspend fun insertCountryContinentCrossRef(
+        countryName: String,
+        continentName: String,
+    )
+
     suspend fun deleteAll()
 }
