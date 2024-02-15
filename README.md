@@ -1,6 +1,6 @@
 # Countries
 
-Countries is a project to practice CLEAN Android development with focus on the best practices displaying data from the https://restcountries.com/ API.
+Countries is a project to practice CLEAN Android development with focus on the best practices. The app displays data from the https://restcountries.com/ API.
 
 <p align="center">
 <img src="https://github.com/jibjoub/Countries/assets/46657670/64452f6d-3283-4cdd-a8bc-03f3ae829f00" width="25%"/>
