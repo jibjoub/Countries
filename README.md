@@ -13,13 +13,13 @@ Countries is a project to practice CLEAN Android development with focus on the b
 - Kotlin
   - Coroutines
   - Flow + Livedata
+- Retrofit for consuming the API
 - Hilt for Dependency Injection
 - Jetpack Compose for UI building
 - Architecture
   - CLEAN architecture
   - MVVM (View - ViewModel - Model)
   - Repository pattern
-- Retrofit for consuming the API
 - Junit for unit tests
 
 ## Current state of the project
